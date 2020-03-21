@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,25 +32,23 @@
 					<img src="<?php echo base_url();?>assets/images/img-01.png" alt="IMG">
 				</div>
 
-				<form class="login100-form validate-form" method="POST" action="<?php echo base_url();?>index.php/Auth/Regist">
+				<form class="login100-form validate-form" method="POST" action="<?php echo base_url();?>index.php/Auth/Regist/check_username">
 					<span class="login100-form-title">
                     Register to myProject
 					</span>
-
 					<div class="wrap-input100 validate-input" >
-						<input class="input100" type="text" name="username" placeholder="Username" value="">
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<i class="fa fa-envelope" aria-hidden="true"></i>
-						</span>
+						<input class="input100" type="text" name="mail" placeholder="email" value="" required > 
 					</div>
-
+					<div class="wrap-input100 validate-input" >
+						<input class="input100" type="text" name="username" placeholder="Username" value="" required>
+					</div>
+					<div class="wrap-input100 validate-input" data-validate = "Password is required" >
+						<input class="input100" type="password" name="pass" placeholder="Password" value="" required>
+						
+					</div>
 					<div class="wrap-input100 validate-input" data-validate = "Password is required">
-						<input class="input100" type="password" name="pass" placeholder="Password" value="">
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<i class="fa fa-lock" aria-hidden="true"></i>
-						</span>
+						<input class="input100" type="password" name="cpass" placeholder="Confirm password" value="" required>
+			
 					</div>
 					<div class="container-login100-form-btn">
 						<button class="login100-form-btn" >
