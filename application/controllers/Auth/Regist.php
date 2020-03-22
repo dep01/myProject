@@ -8,6 +8,10 @@ class Regist extends CI_Controller {
     {
         $this->load->view('Auth/Regist');
     }
+    public function profile(){
+        $this->load->view('Auth/Profil');
+        
+    }
     public function check_username(){
         $username = $_POST['username'];
         $pass = $_POST['pass'];

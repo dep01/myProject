@@ -30,7 +30,7 @@
 					<img src="<?php echo base_url();?>assets/images/img-01.png" alt="IMG">
 				</div>
 
-				<form class="login100-form validate-form">
+				<form class="login100-form validate-form" method="POST" action="<?php echo base_url();?>index.php/Auth/Login/Validate">
 					<span class="login100-form-title">
 						Login to myProject
 					</span>
@@ -42,13 +42,6 @@
 							<i class="fa fa-envelope" aria-hidden="true"></i>
 						</span>
 					</div>
-					<!-- <div class="wrap-input100 validate-input" data-validate = "Password is required">
-					<select class="browser-default custom-select">
-  						<option selected>Gender</option>
-  						<option value="1">Male</option>
-  						<option value="2">Female</option>
-					</select>
-					</div> -->
 					<div class="wrap-input100 validate-input" data-validate = "Password is required">
 						<input class="input100" type="password" name="pass" placeholder="Password" value="">
 						<span class="focus-input100"></span>

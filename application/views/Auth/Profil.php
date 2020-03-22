@@ -22,7 +22,9 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/util.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/main.css">
 <!--===============================================================================================-->
+
 </head>
+
 <body>
 	
 	<div class="limiter">
@@ -37,14 +39,32 @@
                     Last step, Please complete your profile
 					</span>
 					<div class="wrap-input100 validate-input" >
-						<input class="input100" type="text" name="fullname" placeholder="Fullname" value="" required > 
+					<table>
+					<tr>
+						<td>
+							<input type="text" name="fullname" placeholder="Fullname" value="" required >
+						</td>
+						<td>
+							<select class="browser-default custom-select" name="gender">
+  							<option selected>Gender</option>
+  							<option value="1">Male</option>
+  							<option value="2">Female</option>
+							</select>
+						
+						</td>
+					</tr>
+					</table>
+						 
 					</div>
+					
+					
 					<div class="wrap-input100 validate-input" >
 						<input class="input100" type="text" name="address" placeholder="Address" value="" required>
 					</div>
+
 					<div class="container-login100-form-btn">
 						<button class="login100-form-btn" >
-							Next
+							complete
 						</button>
 					</div>
 
@@ -61,7 +81,7 @@
 		</div>
 	</div>
 	
-	
+
 
 	
 <!--===============================================================================================-->	
