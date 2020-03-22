@@ -12,6 +12,20 @@ class Regist extends CI_Controller {
         $this->load->view('Auth/Profil');
         
     }
+    public function save_profile(){
+        $data = array(
+            'id_user'=> $_POST['id'],
+            'fullname'=>$_POST['fullname'],
+            'birthday'=>$_POST['birthday'],
+            'id_gender'=>$_POST['gender'],
+            'phone'=>$_POST['phone'],
+            'address'=>$_POST['address'],
+            'id_active_status'=>1
+        );
+        $this->load->model('Auth/Regist_model');
+        $model=$this->Regist_model->save_profile($data);
+
+    }
     public function check_username(){
         $username = $_POST['username'];
         $pass = $_POST['pass'];

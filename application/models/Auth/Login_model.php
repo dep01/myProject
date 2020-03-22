@@ -22,10 +22,9 @@ class Login_model extends CI_Model {
             $data = $this->db->get_where('profile_table', $id_user);
             $result = $data->result_array();
             if (empty($result)){
-                    echo'Belum lengkap'; 
-                
+                redirect('Auth/Regist/Profile?id='.$id_user['id_user']); 
             }else{
-                echo'sudah lengkap';
+                echo'ini home';
             }
             
         }

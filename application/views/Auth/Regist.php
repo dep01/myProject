@@ -22,6 +22,21 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/util.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/main.css">
 <!--===============================================================================================-->
+<style>
+	.text{
+	font-family: Poppins-Medium;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #666666;
+
+  display: block;
+  width: 100%;
+  background: #e6e6e6;
+  height: 50px;
+  border-radius: 25px;
+  padding: 0 20px 0 20px;
+}
+</style>
 </head>
 <body>
 	
@@ -37,17 +52,17 @@
                     Register to myProject
 					</span>
 					<div class="wrap-input100 validate-input" >
-						<input class="input100" type="text" name="mail" placeholder="email" value="" required > 
+						<input class="text" type="text" name="mail" placeholder="email" value="" required > 
 					</div>
 					<div class="wrap-input100 validate-input" >
-						<input class="input100" type="text" name="username" placeholder="Username" value="" required>
+						<input class="text" type="text" name="username" placeholder="Username" value="" required>
 					</div>
 					<div class="wrap-input100 validate-input" data-validate = "Password is required" >
-						<input class="input100" type="password" name="pass" placeholder="Password" value="" required>
+						<input class="text" type="password" name="pass" placeholder="Password" value="" required>
 						
 					</div>
 					<div class="wrap-input100 validate-input" data-validate = "Password is required">
-						<input class="input100" type="password" name="cpass" placeholder="Confirm password" value="" required>
+						<input class="text" type="password" name="cpass" placeholder="Confirm password" value="" required>
 			
 					</div>
 					<div class="container-login100-form-btn">

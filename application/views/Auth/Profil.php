@@ -22,7 +22,40 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/util.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/main.css">
 <!--===============================================================================================-->
+<style>
+.text-area{
+ font-family: Poppins-Medium;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #666666;
 
+  display: block;
+  width: 100%;
+  height:100%;
+  background: #e6e6e6;
+  border-radius: 25px;
+  padding: 20px 20px 20px 20px;
+}
+.wrap-area{
+	position: relative;
+	  width: 100%;
+	  height:100px;
+  	margin-bottom: 10px;
+}
+.text{
+	font-family: Poppins-Medium;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #666666;
+
+  display: block;
+  width: 100%;
+  background: #e6e6e6;
+  height: 50px;
+  border-radius: 25px;
+  padding: 0 20px 0 20px;
+}
+</style>
 </head>
 
 <body>
@@ -34,45 +67,42 @@
 					<img src="<?php echo base_url();?>assets/images/img-01.png" alt="IMG">
 				</div>
 
-				<form class="login100-form validate-form" method="POST" action="">
+				<form class="login100-form validate-form" method="POST" action="<?php echo base_url();?>index.php/Auth/Regist/save_profile">
 					<span class="login100-form-title">
                     Last step, Please complete your profile
 					</span>
 					<div class="wrap-input100 validate-input" >
-					<table>
-					<tr>
-						<td>
-							<input type="text" name="fullname" placeholder="Fullname" value="" required >
-						</td>
-						<td>
-							<select class="browser-default custom-select" name="gender">
+						<input class="text"type="text" name="fullname" placeholder="Fullname" value="" required >	 
+					</div>
+					<div class="wrap-input100 validate-input" >
+						<input class="text"type="number" name="phone" placeholder="Phone number" value="" required >	 
+					</div>
+					<div class="wrap-input100 validate-input" >
+						<input class="text"type="date" name="birthday" placeholder="Birthday" required >	 
+					</div>
+					<div class="wrap-input100 validate-input">
+							<select class="text" name="gender">
   							<option selected>Gender</option>
   							<option value="1">Male</option>
   							<option value="2">Female</option>
 							</select>
-						
-						</td>
-					</tr>
-					</table>
-						 
 					</div>
-					
-					
-					<div class="wrap-input100 validate-input" >
-						<input class="input100" type="text" name="address" placeholder="Address" value="" required>
+					<div class="wrap-area" >
+						<textarea class="text-area" type="text" name="address" placeholder="Address" value="" required></textarea>
 					</div>
 
 					<div class="container-login100-form-btn">
 						<button class="login100-form-btn" >
 							complete
 						</button>
+						<input type="hidden" value="<?php echo $_GET['id'] ?>" name="id">
 					</div>
 
 			
 
 					<div class="text-center p-t-136">
-						<a class="txt2" href="<?php echo base_url();?>index.php/Auth/Login">
-							Have account?
+						<a class="txt2" >
+							
 							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
 						</a>
 					</div>
