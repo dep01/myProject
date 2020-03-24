@@ -6,6 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Login_model extends CI_Model {
 
     public function Validate($query){
+        $return = 0;
         $data = $this->db->query($query);
         $result = $data->result_array();
         if (empty($result)){
@@ -14,7 +15,6 @@ class Login_model extends CI_Model {
                 alert('User not found');
                 </script>
                 ";
-                redirect('Auth/Login','refresh'); 
             
         }else{
             $id_user = array(
@@ -22,12 +22,16 @@ class Login_model extends CI_Model {
             $data = $this->db->get_where('profile_table', $id_user);
             $result = $data->result_array();
             if (empty($result)){
-                redirect('Auth/Regist/Profile?id='.$id_user['id_user']); 
+                $return = array(
+                    'return'=>1,
+                    'id_user'=>$id_user['id_user']
+                );
             }else{
-                echo'ini home';
+                $return = 2;
             }
             
         }
+        return $return;
     }
 
 }

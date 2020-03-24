@@ -95,15 +95,14 @@
 						<button class="login100-form-btn" >
 							complete
 						</button>
-						<input type="hidden" value="<?php echo $_GET['id'] ?>" name="id">
+						<input type="hidden" value="<?php echo $id_user ?>" name="id">
 					</div>
 
-			
+
 
 					<div class="text-center p-t-136">
 						<a class="txt2" >
-							
-							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+						
 						</a>
 					</div>
 				</form>

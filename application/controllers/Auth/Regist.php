@@ -24,6 +24,7 @@ class Regist extends CI_Controller {
         );
         $this->load->model('Auth/Regist_model');
         $model=$this->Regist_model->save_profile($data);
+        echo 'ini home';
 
     }
     public function check_username(){
@@ -31,21 +32,22 @@ class Regist extends CI_Controller {
         $pass = $_POST['pass'];
         $cpass =$_POST['cpass'];
         $mail =$_POST['mail'];
-        
+        $this->load->model('Encrypt');
+        $encrypt=$this->Encrypt->Encrypt_data($pass);
         if ($pass != $cpass){
             echo "
             <script>
             alert('Password must be same');
             </script>
             ";
-            redirect('Auth/Regist','refresh'); 
+            $this->load->view('Auth/Regist');
         }else{
             $data= array(
                 'username'=>$username,
-                'password'=>$pass,
+                'password'=>$encrypt,
                 'user_mail'=>$mail,
                 'verify_code'=>123456,
-                'id_verify_status'=>1,
+                'id_verify_status'=>2,
                 'id_active_status'=>1
             );
             $data_user=array(
@@ -56,6 +58,11 @@ class Regist extends CI_Controller {
             );
             $this->load->model('Auth/Regist_model');
             $model=$this->Regist_model->check_username($data,$data_user,$data_mail);
+            if($model==0){
+                $this->load->view('Auth/Regist');
+            }else{
+                $this->load->view('Auth/Profil',$model);
+            }
         }
     }
 
