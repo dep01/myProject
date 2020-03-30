@@ -23,10 +23,9 @@ class Login extends CI_Controller {
         if ($model==0){
             $this->load->view('Auth/Login.php');
         }elseif($model==2){
-            echo 'ini Home';
+            $this->load->view('App/Home.php'); 
         }else{
             $this->load->view('Auth/Profil',$model);
-            
         }
     }
 }

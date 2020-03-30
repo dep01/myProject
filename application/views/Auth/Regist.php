@@ -52,7 +52,7 @@
                     Register to myProject
 					</span>
 					<div class="wrap-input100 validate-input" >
-						<input class="text" type="text" name="mail" placeholder="email" value="" required > 
+						<input class="text" type="email" name="mail" placeholder="email" value="" required > 
 					</div>
 					<div class="wrap-input100 validate-input" >
 						<input class="text" type="text" name="username" placeholder="Username" value="" required>

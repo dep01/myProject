@@ -1,0 +1,32 @@
+project management
+
+kebutuhan
+1.Pembagian Pekerjaan
+2.Pembagian hasil
+3.Pembagian hasil disesuaikan dengan jobbase
+4.Persentase hasil yang didapatkan sesuai job base
+5.Penyusunan time line project
+6.Management jobbase
+7.Siapapun bisa menggunakannya dan mennyetting sesuai dengan kebutuhan tiap akun
+
+flow
+1.Create akun / Login
+2.Create project
+3.Jika login sebagai author project maka kita bisa setting semua kebutuhan project
+4.Jika login sebagai team kita hanya bisa lihat timeline dan pembagian hasil dari total project
+5.Ada laporan project selesai,proses,deadline
+6.Team bisa mengganti status pekerjaan dari proses ke done di setiap point job basenya
+
+jobbase -> project 100
+1.PM -> 30
+2.Backend ->30
+3.Frontend ->30
+
+total pembayaran tidak boleh lebih dari 100%
+tapi boleh kurang
+sisanya dibagi rata
+
+backend ->3 -> 30:3 = 10
+frontend ->2 -> 30:2 = 15
+PM ->1-> 30:1 = 30
+sisa 10 -> sisa dibagi rata kesemua orang -> 10:6 = 1.66

@@ -75,7 +75,7 @@
 						<input class="text"type="text" name="fullname" placeholder="Fullname" value="" required >	 
 					</div>
 					<div class="wrap-input100 validate-input" >
-						<input class="text"type="number" name="phone" placeholder="Phone number" value="" required >	 
+						<input class="text"type="text" name="phone" placeholder="Phone number" value="" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required >	 
 					</div>
 					<div class="wrap-input100 validate-input" >
 						<input class="text"type="date" name="birthday" placeholder="Birthday" required >	 

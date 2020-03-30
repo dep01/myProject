@@ -1,0 +1,294 @@
+verifyStatus
+-idVerifyStatus(PK)
+-verifyStatus
+-createdate
+-updatedate
+
+
+activeStatus
+-idActiveStatus(PK)
+-activeStatus
+-createdate
+-updatedate
+
+userTable
+-idUser(PK)
+-username
+-password
+-verify_code
+-idVerifyStatus(FK)
+-createdate
+-updatedate
+-idActiveStatus(FK)
+
+genderTable
+-idGender(PK)
+-gender
+-createdate
+-updatedate
+-idActiveStatus(FK)
+
+profileTable
+-idProfile(PK)
+-idUser(FK)
+-name
+-idGender(FK)
+-email
+-phone
+-address
+-createdate
+-updatedate
+-idActiveStatus(FK)
+
+statusUser
+-idStatusUser(PK)
+-status-> team,Author
+-createdate
+-updatedate
+-idActiveStatus(FK)
+
+jobBaseTable
+-idUser(FK)
+-idJobbase(PK)
+-jobBase -> PM,backend,frontend,etc
+-percentageFee
+-createdate
+-updatedate
+-idActiveStatus(FK)
+
+projectStatus
+-idProjectStatus(PK)
+-projectStatus
+-createdate
+-updatedate
+-idActiveStatus(FK)
+
+jobStatus
+-idJobStatus(Pk)
+-jobStatus
+-createdate
+-updatedate
+-idActiveStatus(FK)
+
+project
+-idUser(FK)
+-idproject(PK)
+-projectname
+-projectStart
+-projectEnd
+-projectFee
+-projectDeadline
+-createdate
+-updatedate
+-idProjectStatus(FK)
+
+projectDetail
+-idproject(FK)
+-idUser(FK)
+-idJobbase(FK)
+-idStatusUser(FK)
+-detaiJob
+-startjob
+-finishjob
+-deadlineJob
+-createdate
+-updatedate
+-idJobStatus(FK)
+--------------------------------------------New 29-03-2020-----------------------------------------
+list_friend_status
+-id_list_friend_status PK
+-list_friend_status=> (Request,Following,Reject,Unfollow)
+-createdate
+-updatedate
+-idActiveStatus(FK)
+
+list_friend
+-id_user(FK,PK)
+-id_user_friend(FK,PK)
+-id_list_friend_status (FK)
+-createdate
+-updatedate
+
+project_payment_status
+-id_project_payment_status(PK)
+-project_payment_status=>(Payment, Completed)
+-createdate
+-updatedate
+-idActiveStatus(FK)
+
+project_payment
+-id_project_payment(PK)
+-id_project(FK)
+-payment_amount
+-payment_progress
+-project_progress=>(persentase project selesai)
+-id_project_payment_status(FK)
+-createdate
+-updatedate
+
+job_payment
+-id_job_payment(PK)
+-id_project(FK)
+-id_user(FK)
+-payment_amount
+-payment_progress
+-job_progress=>(persentase jobselesai)
+-id_project_payment_status(FK)
+-createdate
+-updatedate
+
+create table verify_status(
+id_verify_status int primary key,
+verify_status varchar(15) not null,
+created datetime default CURRENT_TIMESTAMP,
+updated datetime default CURRENT_TIMESTAMP on UPDATE CURRENT_TIMESTAMP
+);
+
+create table active_status(
+id_active_status int primary key,
+active_status varchar(15) not null,
+created datetime default CURRENT_TIMESTAMP,
+updated datetime default CURRENT_TIMESTAMP on UPDATE CURRENT_TIMESTAMP
+);
+
+create table user_table(
+id_user int AUTO_INCREMENT primary key,
+username varchar (30) not null,
+password varchar(30) not null,
+verify_code int not null,
+id_verify_status int ,
+constraint fk_id_verify_status_user_table foreign key(id_verify_status) references verify_status(id_verify_status),
+created datetime default CURRENT_TIMESTAMP,
+updated datetime default CURRENT_TIMESTAMP on UPDATE CURRENT_TIMESTAMP,
+id_active_status int ,
+constraint fk_id_active_status_user_table foreign key(id_active_status) references active_status(id_active_status)
+);
+
+create table gender_table(
+id_gender int primary key,
+gender varchar(10) not null,
+created datetime default CURRENT_TIMESTAMP,
+updated datetime default CURRENT_TIMESTAMP on UPDATE CURRENT_TIMESTAMP,
+id_active_status int ,constraint fk_id_active_status_gender_table foreign key(id_active_status) references active_status(id_active_status)
+);
+
+create table profile_table(
+id_profile int AUTO_INCREMENT primary key,
+id_user int ,constraint fk_id_user_profile_table foreign key (id_user) references user_table(id_user),
+fullname varchar (50) not null,
+birthday date not null,
+id_gender int, constraint fk_id_gender_profile_table foreign key (id_gender) references gender_table(id_gender),
+email varchar(50) not null,
+phone varchar(20) not null,
+address varchar(MAX) not null,
+created datetime default CURRENT_TIMESTAMP,
+updated datetime default CURRENT_TIMESTAMP on UPDATE CURRENT_TIMESTAMP,
+id_active_status int ,constraint fk_id_active_status_profile_table foreign key(id_active_status) references active_status(id_active_status)
+);
+
+create table status_user(
+id_status_user int primary key,
+status varchar(20) not null,
+created datetime default CURRENT_TIMESTAMP,
+updated datetime default CURRENT_TIMESTAMP on UPDATE CURRENT_TIMESTAMP,
+id_active_status int, constraint fk_id_active_status_status_user foreign key(id_active_status) references active_status(id_active_status)
+);
+
+create table jobbase_table(
+id_user int ,constraint fk_id_user_jobbase_table foreign key(id_user) references user_table(id_user),
+id_jobbase int AUTO_INCREMENT primary key,
+jobbase varchar(30) not null,
+percentageFee int,
+created datetime default CURRENT_TIMESTAMP,
+updated datetime default CURRENT_TIMESTAMP on UPDATE CURRENT_TIMESTAMP,
+id_active_status int, constraint fk_id_active_status_jobbase_table foreign key(id_active_status) references active_status(id_active_status)
+);
+
+create table project_status(
+id_project_status int primary key,
+project_status varchar(20) not null,
+created datetime default CURRENT_TIMESTAMP,
+updated datetime default CURRENT_TIMESTAMP on UPDATE CURRENT_TIMESTAMP,
+id_active_status int ,constraint fk_id_active_status_project_status foreign key(id_active_status) references active_status(id_active_status)
+);
+create table job_status(
+id_job_status int primary key,
+job_status varchar(20) not null,
+created datetime default CURRENT_TIMESTAMP,
+updated datetime default CURRENT_TIMESTAMP on UPDATE CURRENT_TIMESTAMP,
+id_active_status int ,constraint fk_id_active_status_job_status foreign key(id_active_status) references active_status(id_active_status)
+);
+
+create table project(
+id_user int ,constraint fk_id_user_project foreign key(id_user) references user_table(id_user),
+id_project int AUTO_INCREMENT primary key,
+project_name varchar(50) not null,
+project_start date not null,
+project_end date not null,
+project_fee numeric(18,2) not null,
+project_deadline int not null,
+created datetime default CURRENT_TIMESTAMP,
+updated datetime default CURRENT_TIMESTAMP on UPDATE CURRENT_TIMESTAMP,
+id_project_status int ,constraint fk_id_project_status_project foreign key(id_project_status) references project_status(id_project_status)
+);
+
+create table project_detail(
+id_project int ,constraint fk_id_project_project_detail foreign key (id_project) references project(id_project),
+id_user int, constraint fk_id_user_project_detail foreign key(id_user) references user_table(id_user),
+id_jobbase int ,constraint fk_id_jobbase_project_detail foreign key(id_jobbase) references jobbase_table (id_jobbase),
+id_status_user int, constraint fk_id_status_user_project_detail foreign key (id_status_user) references status_user(id_status_user),
+job_detail varchar(MAX) not null,
+start_job date not null,
+finish_job date not null,
+deadline_job int not null,
+created datetime default CURRENT_TIMESTAMP,
+updated datetime default CURRENT_TIMESTAMP on UPDATE CURRENT_TIMESTAMP,
+id_job_status int ,constraint fk_id_job_status_project_detail foreign key(id_job_status) references job_status(id_job_status)
+)
+--------------------------------------------New 29-03-2020-----------------------------------------
+CREATE TABLE list_friend_status(
+id_list_friend_status int AUTO_INCREMENT PRIMARY key,
+list_friend_status varchar(30) not null,
+created datetime default CURRENT_TIMESTAMP,
+updated datetime default CURRENT_TIMESTAMP on UPDATE CURRENT_TIMESTAMP,
+id_active_status int ,
+constraint fk_id_active_status_list_friend_status foreign key(id_active_status) references active_status(id_active_status)
+);
+CREATE TABLE list_friend(
+id_user int
+,constraint fk_id_user_list_friend foreign key (id_user) references user_table(id_user),
+id_user_friend int 
+,constraint fk_id_user_friend_list_friend foreign key (id_user_friend) references user_table(id_user),
+id_list_friend_status int, CONSTRAINT fk_id_list_friend_status_list_friend FOREIGN key (id_list_friend_status) REFERENCES list_friend_status(id_list_friend_status),
+created datetime default CURRENT_TIMESTAMP,
+updated datetime default CURRENT_TIMESTAMP on UPDATE CURRENT_TIMESTAMP
+);
+CREATE TABLE project_payment_status(
+id_project_payment_status int AUTO_INCREMENT PRIMARY KEY,
+project_payment_status varchar(30) not null,
+created datetime default CURRENT_TIMESTAMP,
+updated datetime default CURRENT_TIMESTAMP on UPDATE CURRENT_TIMESTAMP
+);
+create TABLE project_payment(
+id_project_payment int AUTO_INCREMENT PRIMARY KEY,
+id_project int , CONSTRAINT fk_id_project_project_payment FOREIGN key(id_project) REFERENCES project(id_project),
+invoice_document varchar(30) not null,
+payment_amount numeric(18,2) not null,
+payment_progress int NOT null,
+project_progress int not null,
+id_project_payment_status int , CONSTRAINT fk_id_project_payment_status_project_payment FOREIGN key(id_project_payment_status) REFERENCES project_payment_status(id_project_payment_status),
+created datetime default CURRENT_TIMESTAMP,
+updated datetime default CURRENT_TIMESTAMP on UPDATE CURRENT_TIMESTAMP
+);
+create TABLE job_payment(
+id_job_payment int AUTO_INCREMENT PRIMARY KEY,
+id_project int , CONSTRAINT fk_id_project_job_payment FOREIGN key(id_project) REFERENCES project(id_project),
+invoice_document varchar(30) not null,
+id_user int , CONSTRAINT fk_id_user_job_payment FOREIGN key (id_user) REFERENCES user_table(id_user),
+payment_amount numeric(18,2) not null,
+payment_progress int NOT null,
+job_progress int not null,
+id_project_payment_status int , CONSTRAINT fk_id_project_payment_status_job_payment FOREIGN key(id_project_payment_status) REFERENCES project_payment_status(id_project_payment_status),
+created datetime default CURRENT_TIMESTAMP,
+updated datetime default CURRENT_TIMESTAMP on UPDATE CURRENT_TIMESTAMP
+);

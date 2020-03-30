@@ -1,0 +1,3 @@
+->create database name "project_management"
+->Copy query create table from table_web
+->Execute
