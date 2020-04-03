@@ -10,7 +10,7 @@ kebutuhan
 7.Siapapun bisa menggunakannya dan mennyetting sesuai dengan kebutuhan tiap akun
 
 flow
-1.Create akun / Login
+1.Create akun/Login
 2.Create project
 3.Jika login sebagai author project maka kita bisa setting semua kebutuhan project
 4.Jika login sebagai team kita hanya bisa lihat timeline dan pembagian hasil dari total project
@@ -30,3 +30,6 @@ backend ->3 -> 30:3 = 10
 frontend ->2 -> 30:2 = 15
 PM ->1-> 30:1 = 30
 sisa 10 -> sisa dibagi rata kesemua orang -> 10:6 = 1.66
+
+---Setiap project bisa mempunyai persentase keuntungan berbeda
+----

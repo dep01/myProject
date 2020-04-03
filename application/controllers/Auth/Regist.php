@@ -3,7 +3,11 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Regist extends CI_Controller {
-
+    public function __construct(){
+        parent::__construct();
+        $this->load->model('Auth/Login_model','Login');
+        $this->load->model('Auth/Regist_model','Regist');
+    }
     public function index()
     {
         $this->load->view('Auth/Regist');
@@ -13,7 +17,7 @@ class Regist extends CI_Controller {
         
     }
     public function save_profile(){
-        $data = array(
+        $save = array(
             'id_user'=> $_POST['id'],
             'fullname'=>$_POST['fullname'],
             'birthday'=>$_POST['birthday'],
@@ -22,9 +26,11 @@ class Regist extends CI_Controller {
             'address'=>$_POST['address'],
             'id_active_status'=>1
         );
-        $this->load->model('Auth/Regist_model');
-        $model=$this->Regist_model->save_profile($data);
-        echo 'ini home';
+        $model=$this->Regist->save_profile($save);
+        $data['list']= $save;
+        $data['content']='App/Project/Project_list';
+        $data['title']='myProject';
+        $this->load->view('App/Home/Home',$data);
 
     }
     public function check_username(){
@@ -56,8 +62,7 @@ class Regist extends CI_Controller {
             $data_mail=array(
                 'user_mail'=>$mail,
             );
-            $this->load->model('Auth/Regist_model');
-            $model=$this->Regist_model->check_username($data,$data_user,$data_mail);
+            $model=$this->Regist->check_username($data,$data_user,$data_mail);
             if($model==0){
                 $this->load->view('Auth/Regist');
             }else{

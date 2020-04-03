@@ -87,7 +87,7 @@ projectDetail
 -idUser(FK)
 -idJobbase(FK)
 -idStatusUser(FK)
--detaiJob
+-detailJob
 -startjob
 -finishjob
 -deadlineJob

@@ -1,0 +1,5 @@
+
+-----get data total project with status project
+select b.id_project,a.id_user,b.id_project_status from project_detail a
+inner join project b on a.id_project = b.id_project
+inner join project_status c on b.id_project_status = c.id_project_status where a.id_user = $id_user
