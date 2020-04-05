@@ -30,7 +30,7 @@
 					<img src="<?php echo base_url();?>assets/images/img-01.png" alt="IMG">
 				</div>
 
-				<form class="login100-form validate-form" method="POST" action="<?php echo base_url();?>index.php/Auth/Login/Validate">
+				<form class="login100-form validate-form" method="POST" action="<?php echo base_url();?>index.php/Auth">
 					<span class="login100-form-title">
 						Login to myProject
 					</span>
@@ -57,12 +57,12 @@
 					</div>
 
 					<div class="text-center p-t-12">
-						<span class="txt1">
+						<!-- <span class="txt1">
 							Forgot
 						</span>
 						<a class="txt2" href="#">
 							Username / Password?
-						</a>
+						</a> -->
 					</div>
 
 					<div class="text-center p-t-136">

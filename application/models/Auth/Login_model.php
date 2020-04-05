@@ -37,31 +37,15 @@ class Login_model extends CI_Model {
                 "status"=>0,
                 "data"=>""
             );
+            echo "
+            <script>
+            alert('User not found');
+            </script>
+            ";
            
             
         }
-        // if (empty($result)){
-        //         echo "
-        //         <script>
-        //         alert('User not found');
-        //         </script>
-        //         ";
-            
-        // }else{
-        //     $id_user = array(
-        //         'id_user'=>$result[0]['id_user']);
-        //     $data = $this->db->get_where('profile_table', $id_user);
-        //     $result = $data->result_array();
-        //     if (empty($result)){
-        //         $return = array(
-        //             'return'=>1,
-        //             'id_user'=>$id_user['id_user']
-        //         );
-        //     }else{
-        //         $return = 2;
-        //     }
-            
-        // }
+
         return $return;
     }
 

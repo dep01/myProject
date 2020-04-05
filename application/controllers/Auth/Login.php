@@ -31,7 +31,9 @@ class Login extends CI_Controller {
         if ($model['status']==0){
             $this->load->view('Auth/Login.php');
         }elseif($model['status']==2){
-            $this->load->view('App/Home/Home',$data);
+            $this->load->library('session');
+            $this->session->set_flashdata('data', $data);
+            redirect('index.php/Home');
         }else{
             $this->load->view('Auth/Profil',$model['data']);
         }

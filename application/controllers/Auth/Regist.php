@@ -30,8 +30,7 @@ class Regist extends CI_Controller {
         $data['list']= $save;
         $data['content']='App/Project/Project_list';
         $data['title']='myProject';
-        $this->load->view('App/Home/Home',$data);
-
+        redirect('index.php/Login', 'refresh');
     }
     public function check_username(){
         $username = $_POST['username'];

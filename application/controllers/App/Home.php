@@ -6,11 +6,8 @@ class Home extends CI_Controller {
 
     public function index()
     {
-        $this->load->view('App/head');
-        $this->load->view('App/sidebar');
-        $this->load->view('App/content');
-        $this->load->view('App/footer');
-        $this->load->view('App/js');
+        $data = $this->session->flashdata('data');
+        $this->load->view('App/Home/Home',$data);
     }
 
 
