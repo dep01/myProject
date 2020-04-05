@@ -1,10 +1,10 @@
 <?php 
     $data['list']=array(
-        ['title'=>'Total',
+        ['title'=>'Your Project',
         'count'=>30],
-        ['title'=>'Selesai',
+        ['title'=>'Finished',
         'count'=>10],
-        ['title'=>'Belum',
+        ['title'=>'On Progress',
         'count'=>20],
     );
  ?>

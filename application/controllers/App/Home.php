@@ -7,7 +7,14 @@ class Home extends CI_Controller {
     public function index()
     {
         $data = $this->session->flashdata('data');
-        $this->load->view('App/Home/Home',$data);
+        if($data){
+            $this->load->library('session');
+            $this->session->set_flashdata('data', $data);
+            $this->load->view('App/Home/Home',$data);
+        }else{
+            redirect('index.php/Login');
+        }
+     
     }
 
 
