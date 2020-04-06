@@ -1391,7 +1391,9 @@ pre code {
 .table-sm td {
   padding: 0.3rem;
 }
-
+.padding-card{
+  margin: 20px;
+}
 .table-bordered {
   border: 1px solid #e3e6f0;
 }

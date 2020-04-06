@@ -53,5 +53,7 @@ $route['default_controller'] = 'Auth/Login';
 $route['Login']='Auth/Login/index';
 $route['Auth']='Auth/Login/Validate';
 $route['Home']='App/Home/index';
+$route['Job']='App/Job_base/index';
+$route['Team']='App/Team/index';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
