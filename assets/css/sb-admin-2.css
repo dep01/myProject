@@ -1392,7 +1392,10 @@ pre code {
   padding: 0.3rem;
 }
 .padding-card{
-  margin: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 0px;
+  margin-right: 0px;
 }
 .table-bordered {
   border: 1px solid #e3e6f0;
