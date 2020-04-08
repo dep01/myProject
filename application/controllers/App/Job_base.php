@@ -49,20 +49,30 @@ public function __construct(){
         if($data){
             $this->load->library('session');
             $this->session->set_flashdata('data', $data);
-            $insert['percentageFee'] = $this->input->post('fee');
-            $insert['jobbase'] = $this->input->post('job');
-            $insert['id_user'] = $data['list']['id_user'];
-            $insert['id_active_status'] = 1;
-            $model = $this->Job->Add_job($insert);
-            $user_id = array(
-                'id_user'=>$data['list']['id_user'],
-                'id_active_status'=>1);
-            $list=$this->Job->get_my_job($user_id);
-            $cek['list']  = $data['list'];
-            $cek['content']='App/Job_base/Job_base';
-            $cek['title']='Job Base';
-            $cek['joblist']=$list;
-            redirect('index.php/Job');
+            if ($this->input->post('fee') > 100){
+                echo  "
+                <script>
+                alert('Maximum percentage is 100');
+                document.location.href = 'Jobadd';
+                </script>
+                ";
+            }else{
+                $insert['percentageFee'] = $this->input->post('fee');
+                $insert['jobbase'] = $this->input->post('job');
+                $insert['id_user'] = $data['list']['id_user'];
+                $insert['id_active_status'] = 1;
+                $model = $this->Job->Add_job($insert);
+                $user_id = array(
+                    'id_user'=>$data['list']['id_user'],
+                    'id_active_status'=>1);
+                $list=$this->Job->get_my_job($user_id);
+                $cek['list']  = $data['list'];
+                $cek['content']='App/Job_base/Job_base';
+                $cek['title']='Job Base';
+                $cek['joblist']=$list;
+                redirect('index.php/Job');
+            }
+            
         }else{
             redirect('index.php/Login');
         }
@@ -72,21 +82,32 @@ public function __construct(){
         if($data){
             $this->load->library('session');
             $this->session->set_flashdata('data', $data);
-            $insert['percentageFee'] = $this->input->post('fee');
-            $insert['jobbase'] = $this->input->post('job');
-            $condition['id_user'] = $data['list']['id_user'];
-            $condition['id_jobbase']=$this->input->post('id');
-            $condition['id_active_status'] = 1;
-            $model = $this->Job->Update_job($insert,$condition);
-            $user_id = array(
-                'id_user'=>$data['list']['id_user'],
-                'id_active_status'=>1);
-            $list=$this->Job->get_my_job($user_id);
-            $cek['list']  = $data['list'];
-            $cek['content']='App/Job_base/Job_base';
-            $cek['title']='Job Base';
-            $cek['joblist']=$list;
-            redirect('index.php/Job');
+            if ( $this->input->post('fee') > 100){
+                $id = $this->input->post('id');
+                $locate ="Updatejob/".$id;
+                echo  "
+                <script>
+                alert('Maximum percentage is 100');
+                document.location.href = '$locate';
+                </script>
+                ";
+            }else{
+                $insert['percentageFee'] = $this->input->post('fee');
+                $insert['jobbase'] = $this->input->post('job');
+                $condition['id_user'] = $data['list']['id_user'];
+                $condition['id_jobbase']=$this->input->post('id');
+                $condition['id_active_status'] = 1;
+                $model = $this->Job->Update_job($insert,$condition);
+                $user_id = array(
+                    'id_user'=>$data['list']['id_user'],
+                    'id_active_status'=>1);
+                $list=$this->Job->get_my_job($user_id);
+                $cek['list']  = $data['list'];
+                $cek['content']='App/Job_base/Job_base';
+                $cek['title']='Job Base';
+                $cek['joblist']=$list;
+                redirect('index.php/Job');
+            }  
         }else{
             redirect('index.php/Login');
         }

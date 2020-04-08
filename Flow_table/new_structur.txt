@@ -1,141 +1,3 @@
-verifyStatus
--idVerifyStatus(PK)
--verifyStatus
--createdate
--updatedate
-
-
-activeStatus
--idActiveStatus(PK)
--activeStatus
--createdate
--updatedate
-
-userTable
--idUser(PK)
--username
--password
--verify_code
--idVerifyStatus(FK)
--createdate
--updatedate
--idActiveStatus(FK)
-
-genderTable
--idGender(PK)
--gender
--createdate
--updatedate
--idActiveStatus(FK)
-
-profileTable
--idProfile(PK)
--idUser(FK)
--name
--idGender(FK)
--email
--phone
--address
--createdate
--updatedate
--idActiveStatus(FK)
-
-statusUser
--idStatusUser(PK)
--status-> team,Author
--createdate
--updatedate
--idActiveStatus(FK)
-
-jobBaseTable
--idUser(FK)
--idJobbase(PK)
--jobBase -> PM,backend,frontend,etc
--percentageFee
--createdate
--updatedate
--idActiveStatus(FK)
-
-projectStatus
--idProjectStatus(PK)
--projectStatus
--createdate
--updatedate
--idActiveStatus(FK)
-
-jobStatus
--idJobStatus(Pk)
--jobStatus
--createdate
--updatedate
--idActiveStatus(FK)
-
-project
--idUser(FK)
--idproject(PK)
--projectname
--projectStart
--projectEnd
--projectFee
--projectDeadline
--createdate
--updatedate
--idProjectStatus(FK)
-
-projectDetail
--idproject(FK)
--idUser(FK)
--idJobbase(FK)
--idStatusUser(FK)
--detailJob
--startjob
--finishjob
--deadlineJob
--createdate
--updatedate
--idJobStatus(FK)
---------------------------------------------New 29-03-2020-----------------------------------------
-list_friend_status
--id_list_friend_status PK
--list_friend_status=> (Request,Following,Reject,Unfollow)
--createdate
--updatedate
--idActiveStatus(FK)
-
-list_friend
--id_user(FK,PK)
--id_user_friend(FK,PK)
--id_list_friend_status (FK)
--createdate
--updatedate
-
-project_payment_status
--id_project_payment_status(PK)
--project_payment_status=>(Payment, Completed)
--createdate
--updatedate
--idActiveStatus(FK)
-
-project_payment
--id_project_payment(PK)
--id_project(FK)
--payment_amount
--payment_progress
--project_progress=>(persentase project selesai)
--id_project_payment_status(FK)
--createdate
--updatedate
-
-job_payment
--id_job_payment(PK)
--id_project(FK)
--id_user(FK)
--payment_amount
--payment_progress
--job_progress=>(persentase jobselesai)
--id_project_payment_status(FK)
--createdate
--updatedate
 
 create table verify_status(
 id_verify_status int primary key,
@@ -154,6 +16,7 @@ updated datetime default CURRENT_TIMESTAMP on UPDATE CURRENT_TIMESTAMP
 create table user_table(
 id_user int AUTO_INCREMENT primary key,
 username varchar (30) not null,
+user_mail varchar(50) not null,
 password varchar(30) not null,
 verify_code int not null,
 id_verify_status int ,
@@ -178,9 +41,8 @@ id_user int not null ,constraint fk_id_user_profile_table foreign key (id_user) 
 fullname varchar (50) not null,
 birthday date not null,
 id_gender int not null, constraint fk_id_gender_profile_table foreign key (id_gender) references gender_table(id_gender),
-email varchar(50) not null,
 phone varchar(20) not null,
-address varchar(MAX) not null,
+address varchar(1000) not null,
 created datetime default CURRENT_TIMESTAMP,
 updated datetime default CURRENT_TIMESTAMP on UPDATE CURRENT_TIMESTAMP,
 id_active_status int not null ,constraint fk_id_active_status_profile_table foreign key(id_active_status) references active_status(id_active_status)
@@ -237,15 +99,14 @@ id_project int not null,constraint fk_id_project_project_detail foreign key (id_
 id_user int not null, constraint fk_id_user_project_detail foreign key(id_user) references user_table(id_user),
 id_jobbase int not null,constraint fk_id_jobbase_project_detail foreign key(id_jobbase) references jobbase_table (id_jobbase),
 id_status_user int not null, constraint fk_id_status_user_project_detail foreign key (id_status_user) references status_user(id_status_user),
-job_detail varchar(MAX) not null,
+job_detail varchar(1000) not null,
 start_job date not null,
 finish_job date not null,
 deadline_job int not null,
 created datetime default CURRENT_TIMESTAMP,
 updated datetime default CURRENT_TIMESTAMP on UPDATE CURRENT_TIMESTAMP,
 id_job_status int not null,constraint fk_id_job_status_project_detail foreign key(id_job_status) references job_status(id_job_status)
-)
---------------------------------------------New 29-03-2020-----------------------------------------
+);
 CREATE TABLE list_friend_status(
 id_list_friend_status int AUTO_INCREMENT PRIMARY key,
 list_friend_status varchar(30) not null,
