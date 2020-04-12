@@ -18,9 +18,7 @@ class Job_model extends CI_Model {
         $this->db->where($condition);
         $this->db->update('jobbase_table', $data);
     }
-    public function Delete_job($id){
 
-    }
 
 
 }

@@ -12,6 +12,12 @@ class Team_model extends CI_Model {
 
         return $result;
     }
+    public function search_team($username,$id_user){
+        $query = $this->db->query("Select b.username, concat(a.fullname,'( ',b.username,' )') as userdata from profile_table a
+        inner join user_table b on a.id_user = b.id_user where a.id_active_status = 1 and a.id_user <> $id_user and (a.fullname like '%".$username."%' or b.username like '%".$username."%') limit 10");
+        $result = $query->result_array();
+        return $result;
+    }
 
 }
 

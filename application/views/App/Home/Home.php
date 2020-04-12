@@ -42,9 +42,7 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-
           <?php $this->load->view($content, $list);?>
-
         </div>
         <!-- /.container-fluid -->
 
@@ -90,6 +88,7 @@
       </div>
     </div>
   </div>
+
   <!-- Bootstrap core JavaScript-->
   <script src="<?php echo base_url();?>assets/vendor/jquery/jquery.min.js"></script>
   <script src="<?php echo base_url();?>assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -104,7 +103,19 @@
 
   <!-- Page level custom scripts -->
   <script src="<?php echo base_url();?>assets/js/demo/datatables-demo.js"></script>
+  <!-- jQuery UI library -->
+  <link rel="stylesheet" href="<?php echo base_url();?>assets/css/jquery-ui.css">
+  <script src="<?php echo base_url();?>assets/js/jquery-ui.min.js"></script>
+  <script type="text/javascript">
+        $(document).ready(function(){
+            $( "#searchteam" ).autocomplete({
+              source: "<?php echo base_url();?>index.php/App/Team/search_team/",
+            });
+            console.log( $( "#searchteam" ))
+        });
+    </script>
 
 </body>
 
 </html>
+

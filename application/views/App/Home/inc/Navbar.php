@@ -8,8 +8,8 @@
 
           <!-- Topbar Search -->
           <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-            <div class="input-group">
-              <input type="text" id="searchteam" name="searchteam" class="form-control bg-light border-0 small" placeholder="Search your team..." aria-label="Search" aria-describedby="basic-addon2">
+            <div class="input-group" >
+              <input type="text" id="searchteam"class="form-control bg-light border-0 small" placeholder="Search your team..." aria-label="Search" aria-describedby="basic-addon2">
               <div class="input-group-append">
                 <button class="btn btn-primary" type="button">
                   <i class="fas fa-search fa-sm"></i>
@@ -17,7 +17,6 @@
               </div>
             </div>
           </form>
-
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
 
@@ -104,7 +103,7 @@
                 </h6>
                 <a class="dropdown-item d-flex align-items-center" href="#">
                   <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="<?php echo base_url(); ?>/assets/images/userUnknown.png" alt="">
+                    <img class="rounded-circle" src="<?php echo base_url(); ?>/assets/images/userUnknown" alt="">
                     <div class="status-indicator bg-success"></div>
                   </div>
                   <div class="font-weight-bold">
@@ -152,7 +151,7 @@
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $list['fullname']; ?></span>
-                <img class="img-profile rounded-circle" src="<?php echo base_url(); ?>/assets/images/userUnknown.png">
+                <img class="img-profile rounded-circle" src="<?php echo base_url(); ?>/assets/images/userUnknown.jpg">
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -170,5 +169,4 @@
             </li>
 
           </ul>
-
         </nav>

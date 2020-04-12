@@ -10,7 +10,7 @@ kebutuhan
 7.Siapapun bisa menggunakannya dan mennyetting sesuai dengan kebutuhan tiap akun
 
 flow
-1.Create akun/Login
+1.Create account/Login
 2.Create project
 3.Jika login sebagai author project maka kita bisa setting semua kebutuhan project
 4.Jika login sebagai team kita hanya bisa lihat timeline dan pembagian hasil dari total project

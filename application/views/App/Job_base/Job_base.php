@@ -29,32 +29,15 @@
                       <td><?php echo $list['percentageFee']; ?></td>
                       <td>
                          <a class="btn btn-warning btn-sm" href="<?php echo base_url();?>index.php/Updatejob/<?php echo $list['id_jobbase']; ?>" style="text-decoration: none;">Update</a> 
-                         <a data-toggle="modal" data-target="#DeleteModal" class="btn btn-danger btn-sm" style="text-decoration: none;">Delete</a>
+                         <a data-toggle="modal" data-target="#DeleteModal<?php echo $list['id_jobbase']?>" class="btn btn-danger btn-sm" style="text-decoration: none;">Delete</a>
                       </td> 
                     </tr>
+                         <?php include('inc/delete_modal.php')?>
                     <?php endforeach;?>
+
                   </tbody>
                 </table>
               </div>
             </div>
           </div>
-  <!-- Delete Modal-->
-  <div>
-  <div class="modal fade" id="DeleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Are you sure to delete this data?</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="<?php echo base_url();?>index.php/deletejob/<?php echo $list['id_jobbase']; ?>">Delete</a>
-        </div>
-      </div>
-    </div>
-  </div>
    <!-- End Of Delete Modal-->
