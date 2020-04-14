@@ -103,7 +103,7 @@
                 </h6>
                 <a class="dropdown-item d-flex align-items-center" href="#">
                   <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="<?php echo base_url(); ?>/assets/images/userUnknown" alt="">
+                    <img class="rounded-circle" src="<?php echo base_url(); ?>/assets/images/userUnknown.png" alt="">
                     <div class="status-indicator bg-success"></div>
                   </div>
                   <div class="font-weight-bold">
@@ -151,11 +151,11 @@
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $list['fullname']; ?></span>
-                <img class="img-profile rounded-circle" src="<?php echo base_url(); ?>/assets/images/userUnknown.jpg">
+                <img class="img-profile rounded-circle" src="<?php echo base_url(); ?>/assets/<?php echo $img;?>">
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
                 </a>

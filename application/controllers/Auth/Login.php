@@ -26,6 +26,11 @@ class Login extends CI_Controller {
         $query="select username,user_mail,id_user from user_table a where (username='$username' or user_mail='$username') and password='$encrypt'";
         $model=$this->Login->Validate($query);
         $data['list']  = $model['data'];
+        if(file_exists("assets/images/user/".$data['list']['id_user'].".jpg")){
+            $data['img'] = "images/user/".$data['list']['id_user'].".jpg";
+        }else{
+            $data['img'] = "images/userUnknown1.jpg";
+        };
         $data['content']='App/Project/Project_list';
         $data['title']='myProject';
         if ($model['status']==0){

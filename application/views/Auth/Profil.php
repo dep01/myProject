@@ -63,8 +63,8 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-				<div class="login100-pic js-tilt" data-tilt>
-					<img src="<?php echo base_url();?>assets/images/img-01.png" alt="IMG">
+				<div class="">
+					<?php include('dragProfile.php')?>
 				</div>
 
 				<form class="login100-form validate-form" method="POST" action="<?php echo base_url();?>index.php/Auth/Regist/save_profile">
@@ -128,7 +128,7 @@
 		})
 	</script>
 <!--===============================================================================================-->
-	<script src="js/main.js"></script>
+	<script src="<?php echo base_url();?>assets/js/main.js"></script>
 
 </body>
 </html>

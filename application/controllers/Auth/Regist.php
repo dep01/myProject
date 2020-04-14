@@ -69,7 +69,27 @@ class Regist extends CI_Controller {
             }
         }
     }
+    public function fileUpload(){
 
+        if(!empty($_FILES['file']['name'])){
+     
+          // Set preference
+          $config['upload_path'] = 'assets/images/user/'; 
+          $config['allowed_types'] = 'jpg|jpeg|png|gif';
+          $config['max_size'] = '3000'; // max_size in kb
+          $config['file_name'] = $this->uri->segment('4').".jpg";
+          $filepath = "assets/images/user/".$this->uri->segment('4');
+          //Load upload library
+          unlink($filepath.".jpg");
+          $this->load->library('upload',$config); 
+          if($this->upload->do_upload('file')){
+            // Get data about the file
+            $uploadData = $this->upload->data();
+          }
+         
+        }
+     
+      }
 }
 
 /* End of file Login.php */
