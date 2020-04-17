@@ -17,6 +17,7 @@ public function __construct(){
             $list = $this->Team->get_my_team($data['list']['id_user']);
             $cek['list']  = $data['list'];
             $cek['content']='App/Team/My_team';
+            $cek['img'] = $data['img'];
             $cek['title']='MyTeam';
             $cek['listteam']= $list;
             $this->load->view('App/Home/Home',$cek);

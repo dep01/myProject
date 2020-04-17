@@ -1,11 +1,11 @@
 <?php 
     $data['list']=array(
         ['title'=>'Your Project',
-        'count'=>30],
+        'count'=>0],
         ['title'=>'Finished',
-        'count'=>10],
+        'count'=>0],
         ['title'=>'On Progress',
-        'count'=>20],
+        'count'=>0],
     );
     
  ?>

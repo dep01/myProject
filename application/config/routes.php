@@ -60,5 +60,7 @@ $route['saveJob']='App/Job_base/saveAdd';
 $route['saveJobUpdate']='App/Job_base/saveUpdate';
 $route['deletejob/:num']='App/Job_base/delete';
 $route['Updatejob/:num']='App/Job_base/Update_job';
+$route['EditProfile']='App/Home/edit_profile';
+$route['UpdateProfile']='App/Home/update_profile';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

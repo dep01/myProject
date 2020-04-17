@@ -6,10 +6,10 @@
     <div class="">
         <table>
         <tr>
-            <td><input type="input" class="form-control" id="job" name="job" placeholder="<?php echo $joblist['jobbase']; ?>" required></td>
+            <td><input type="input" class="form-control" id="job" name="job" placeholder="<?php echo $joblist['jobbase']; ?>" value="<?php echo $joblist['jobbase']; ?>" required></td>
         </tr>
         <tr>
-           <td><input type="input" class="form-control" id="fee" name="fee" placeholder="<?php echo $joblist['percentageFee']; ?>" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required></td>
+           <td><input type="input" class="form-control" id="fee" name="fee" placeholder="<?php echo $joblist['percentageFee']; ?>" value="<?php echo $joblist['percentageFee']; ?>" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required></td>
            <td><input type="hidden" class="form-control" id="id" name="id" value="<?php echo $joblist['id_jobbase']; ?>"></td>
         </tr>  
         <tr>

@@ -5,18 +5,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Login_model extends CI_Model {
 
-    public function Validate($query){
+    public function Validate($username,$password){
         $return=array(
             "msg"=>"user not found",
             "status"=>0,
             "data"=>""
         );
-        $data = $this->db->query($query);
+        $condition="(username ='$username' or user_mail = '$username') and password = '$password'";
+        $this->db->select('id_user,username,user_mail');
+        $this->db->where($condition);
+        $data = $this->db->get('user_table');
         $result = $data->result_array();
         if ($result){
             $id_user = array(
-                'id_user'=>$result[0]['id_user']);
-            $data = $this->db->get_where('profile_table', $id_user);
+                'profile_table.id_user'=>$result[0]['id_user']);
+            $this->db->select('*');
+            $this->db->from('profile_table');
+            $this->db->join('user_table','profile_table.id_user = user_table.id_user');
+            $this->db->join('gender_table','profile_table.id_gender = gender_table.id_gender');
+            $this->db->where($id_user);
+            $data = $this->db->get();
             $result = $data->result_array();
             if ($result){
                 $return=array(

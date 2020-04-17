@@ -13,6 +13,8 @@ public function __construct(){
         if($data){
             $this->load->library('session');
             $this->session->set_flashdata('data', $data);
+            // print_r($data);
+            // die;
             $user_id = array(
                 'id_user'=>$data['list']['id_user'],
                 'id_active_status'=>1);
@@ -20,6 +22,7 @@ public function __construct(){
             $cek['list']  = $data['list'];
             $cek['content']='App/Job_base/Job_base';
             $cek['title']='Job Base';
+            $cek['img'] = $data['img'];
             $cek['joblist']=$list;
             $this->load->view('App/Home/Home',$cek);
         }else{
@@ -36,6 +39,7 @@ public function __construct(){
                 'id_active_status'=>1);
             $list=$this->Job->get_my_job($user_id);
             $cek['list']  = $data['list'];
+            $cek['img'] = $data['img'];
             $cek['content']='App/Job_base/inc/add';
             $cek['title']='Job Base';
             $cek['joblist']=$list;
@@ -69,6 +73,7 @@ public function __construct(){
                 $cek['list']  = $data['list'];
                 $cek['content']='App/Job_base/Job_base';
                 $cek['title']='Job Base';
+                $cek['img'] = $data['img'];
                 $cek['joblist']=$list;
                 redirect('index.php/Job');
             }
@@ -106,6 +111,7 @@ public function __construct(){
                 $cek['content']='App/Job_base/Job_base';
                 $cek['title']='Job Base';
                 $cek['joblist']=$list;
+                $cek['img'] = $data['img'];
                 redirect('index.php/Job');
             }  
         }else{
@@ -141,6 +147,7 @@ public function __construct(){
             $cek['content']='App/Job_base/inc/Update';
             $cek['title']='Job Base';
             $cek['joblist']=$list[0];
+            $cek['img'] = $data['img'];
             $this->load->view('App/Home/Home',$cek);
         }else{
             redirect('index.php/Login');

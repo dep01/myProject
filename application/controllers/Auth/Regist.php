@@ -79,13 +79,21 @@ class Regist extends CI_Controller {
           $config['max_size'] = '3000'; // max_size in kb
           $config['file_name'] = $this->uri->segment('4').".jpg";
           $filepath = "assets/images/user/".$this->uri->segment('4');
-          //Load upload library
           unlink($filepath.".jpg");
           $this->load->library('upload',$config); 
           if($this->upload->do_upload('file')){
-            // Get data about the file
             $uploadData = $this->upload->data();
+            $data = $this->session->flashdata('data');
+            if($data){
+                $this->load->library('session');
+                $cek['list']  = $data['list'];
+                $cek['img'] = "images/user/".$data['list']['id_user'].".jpg";
+                $cek['content']='App/Project/Project_list';
+                $cek['title']='MyProject';
+                $this->session->set_flashdata('data', $cek);
+            }
           }
+
          
         }
      
