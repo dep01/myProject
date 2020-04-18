@@ -1,3 +1,6 @@
+<?php if($this->session->flashdata('notif')){ ?>
+<p class='alert alert-warning'><?php echo $this->session->flashdata('notif')?></p>
+<?php } ?>
 <form action="<?php echo base_url();?>index.php/UpdateProfile" method="POST" class="user">
     <style>
         .test {
@@ -9,7 +12,7 @@
     <div class="row align-content-center ">
         <div class=" w-50 column">
             <div class="w-100  d-flex justify-content-center">
-                <img class="test rounded-circle" src="<?php echo base_url(); ?>/assets/<?php echo $img;?>">
+                <img class="test rounded-circle" src="<?php echo isset($list['image'])?base_url('assets/images/user/'.$list['image']):base_url('assets/images/userUnknown1.jpg') ?>">
             </div>
             <div class="d-flex justify-content-center">
                 <a class="m-2 btn btn-warning btn-sm" data-toggle="modal" data-target="#ChangePicture" href="" style="text-decoration: none;">Change Picture</a>

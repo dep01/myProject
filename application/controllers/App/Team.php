@@ -38,7 +38,7 @@ public function __construct(){
                 foreach ($list as $row)
                     $arr_result[] = $row['userdata'];
                 }else{
-                    $arr_result[] = 'Oops! Nobody was found!';
+                    $arr_result[] = 'Oops! Nobody was found bitch!';
                 }
                 echo json_encode($arr_result);
             }

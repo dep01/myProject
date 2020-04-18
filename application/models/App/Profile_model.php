@@ -3,6 +3,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Profile_model extends CI_Model {
 
+    public function get_my_profile($id){
+        $this->db->select('*');
+        $this->db->from('profile_table');
+        $this->db->join('user_table','profile_table.id_user = user_table.id_user');
+        $this->db->join('gender_table','profile_table.id_gender = gender_table.id_gender');
+        $this->db->where($id);
+        $data = $this->db->get()->result_array(); 
+        return $data;
+    }
     public function update_profile($id,$profile){
         $this->db->where($id);
         $this->db->update('profile_table', $profile);

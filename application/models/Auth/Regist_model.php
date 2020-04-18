@@ -22,18 +22,10 @@ class Regist_model extends CI_Model {
                     'id_user'=>$result[0]['id_user']
                 ); 
             }else{
-                echo "
-                <script>
-                alert('Email is used,Change with another one');
-                </script>
-                ";
+                $this->session->set_flashdata('notif', 'Email is used by another account,Change with another one');
             }
         }else{
-            echo "
-            <script>
-            alert('Username is used,Change with another one');
-            </script>
-            ";
+            $this->session->set_flashdata('notif', 'Username is used by another account,Change with another one');
         }
         return $return;
     }

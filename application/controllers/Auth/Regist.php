@@ -18,18 +18,18 @@ class Regist extends CI_Controller {
     }
     public function save_profile(){
         $save = array(
-            'id_user'=> $_POST['id'],
-            'fullname'=>$_POST['fullname'],
-            'birthday'=>$_POST['birthday'],
-            'id_gender'=>$_POST['gender'],
-            'phone'=>$_POST['phone'],
-            'address'=>$_POST['address'],
-            'id_active_status'=>1
+            'id_user'           => $_POST['id'],
+            'fullname'          =>$_POST['fullname'],
+            'birthday'          =>$_POST['birthday'],
+            'id_gender'         =>$_POST['gender'],
+            'phone'             =>$_POST['phone'],
+            'address'           =>$_POST['address'],
+            'id_active_status'  =>1
         );
-        $model=$this->Regist->save_profile($save);
-        $data['list']= $save;
+        $model          =$this->Regist->save_profile($save);
+        $data['list']   = $save;
         $data['content']='App/Project/Project_list';
-        $data['title']='myProject';
+        $data['title']  ='myProject';
         redirect('index.php/Login', 'refresh');
     }
     public function check_username(){
@@ -39,13 +39,13 @@ class Regist extends CI_Controller {
         $mail =$_POST['mail'];
         $this->load->model('Encrypt');
         $encrypt=$this->Encrypt->Encrypt_data($pass);
+        if(strlen($pass) < 8){
+            $this->session->set_flashdata('notif', 'Minimum password is 8 character');
+            redirect('index.php/Auth/Regist');
+        }
         if ($pass != $cpass){
-            echo "
-            <script>
-            alert('Password must be same');
-            </script>
-            ";
-            $this->load->view('Auth/Regist');
+            $this->session->set_flashdata('notif', 'Password must be same');
+            redirect('index.php/Auth/Regist');
         }else{
             $data= array(
                 'username'=>$username,
@@ -63,7 +63,7 @@ class Regist extends CI_Controller {
             );
             $model=$this->Regist->check_username($data,$data_user,$data_mail);
             if($model==0){
-                $this->load->view('Auth/Regist');
+                redirect('index.php/Auth/Regist');
             }else{
                 $this->load->view('Auth/Profil',$model);
             }
