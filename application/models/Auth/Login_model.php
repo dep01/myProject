@@ -11,7 +11,7 @@ class Login_model extends CI_Model {
             "status"=>0,
             "data"=>""
         );
-        $condition="(username ='$username' or user_mail = '$username') and password = '$password'";
+        $condition='(username ="'.$username.'" or user_mail = "'.$username.'") and password = "'.$password.'"';
         $this->db->select('id_user,username,user_mail');
         $this->db->where($condition);
         $data = $this->db->get('user_table');
@@ -45,15 +45,33 @@ class Login_model extends CI_Model {
                 "status"=>0,
                 "data"=>""
             );
-            echo "
-            <script>
-            alert('User not found');
-            </script>
-            ";
-           
+            $this->session->set_flashdata('notif','Username or password incorrect');
             
-        }
+        };
 
+        return $return;
+    }
+    public function count_project($id_user){
+        $this->db->select('count(distinct(a.id_project))as data');
+        $this->db->from('project a');
+        $this->db->join('project_detail b','a.id_project = b.id_project');
+        $this->db->where("b.id_user = $id_user");
+        $data1 = $this->db->get()->result_array();
+        $this->db->select('count(distinct(a.id_project))as data');
+        $this->db->from('project a');
+        $this->db->join('project_detail b','a.id_project = b.id_project');
+        $this->db->where("b.id_user = $id_user and a.id_project_status = 4");
+        $data2 = $this->db->get()->result_array();
+        $this->db->select('count(distinct(a.id_project))as data');
+        $this->db->from('project a');
+        $this->db->join('project_detail b','a.id_project = b.id_project');
+        $this->db->where("b.id_user = $id_user and a.id_project_status <> 4");
+        $data3 = $this->db->get()->result_array();
+        $return = array(
+            'project_total'     => $data1[0]['data'],
+            'project_finished'  => $data2[0]['data'],
+            'project_progress'  => $data3[0]['data']
+        );
         return $return;
     }
 

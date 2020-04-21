@@ -6,152 +6,110 @@ class Job_base extends CI_Controller {
 public function __construct(){
     parent:: __construct();
     $this->load->model('App/Job_model','Job');
+    $sess   = $this->session->userdata('username');
+    if(!$sess){
+        redirect('index.php/Login');
+    };
 }
-    public function index()
-    {
-        $data = $this->session->flashdata('data');
-        if($data){
-            $this->load->library('session');
-            $this->session->set_flashdata('data', $data);
-            // print_r($data);
-            // die;
-            $user_id = array(
-                'id_user'=>$data['list']['id_user'],
-                'id_active_status'=>1);
-            $list=$this->Job->get_my_job($user_id);
-            $cek['list']  = $data['list'];
-            $cek['content']='App/Job_base/Job_base';
-            $cek['title']='Job Base';
-            $cek['img'] = $data['img'];
-            $cek['joblist']=$list;
-            $this->load->view('App/Home/Home',$cek);
-        }else{
-            redirect('index.php/Login');
-        }
+    public function index(){
+        $mydata     = $this->session->userdata();
+        $user_id    = array(
+                    'id_user'           =>$mydata['id_user'],
+                    'id_active_status'  =>1
+                );
+        $list           =$this->Job->get_my_job($user_id);
+        $cek['list']    = $mydata;
+        $cek['content'] ='App/Job_base/Job_base';
+        $cek['title']   ='Job Base';
+        $cek['joblist'] =$list;
+        $this->load->view('App/Home/Home',$cek);
     }
     public function Add_job(){
-        $data = $this->session->flashdata('data');
-        if($data){
-            $this->load->library('session');
-            $this->session->set_flashdata('data', $data);
-            $user_id = array(
-                'id_user'=>$data['list']['id_user'],
-                'id_active_status'=>1);
-            $list=$this->Job->get_my_job($user_id);
-            $cek['list']  = $data['list'];
-            $cek['img'] = $data['img'];
-            $cek['content']='App/Job_base/inc/add';
-            $cek['title']='Job Base';
-            $cek['joblist']=$list;
-            $this->load->view('App/Home/Home',$cek);
-        }else{
-            redirect('index.php/Login');
-        }
+        $mydata     = $this->session->userdata();
+        $user_id    = array(
+                    'id_user'           =>$mydata['id_user'],
+                    'id_active_status'  =>1
+                        );
+        $list=$this->Job->get_my_job($user_id);
+        $cek['list']    = $mydata;
+        $cek['content'] ='App/Job_base/inc/add';
+        $cek['title']   ='Job Base';
+        $cek['joblist'] =$list;
+        $this->load->view('App/Home/Home',$cek);
     }
     public function saveAdd(){
-        $data = $this->session->flashdata('data');
-        if($data){
-            $this->load->library('session');
-            $this->session->set_flashdata('data', $data);
-            if ($this->input->post('fee') > 100){
-                echo  "
-                <script>
-                alert('Maximum percentage is 100');
-                document.location.href = 'Jobadd';
-                </script>
-                ";
-            }else{
-                $insert['percentageFee'] = $this->input->post('fee');
-                $insert['jobbase'] = $this->input->post('job');
-                $insert['id_user'] = $data['list']['id_user'];
-                $insert['id_active_status'] = 1;
-                $model = $this->Job->Add_job($insert);
-                $user_id = array(
-                    'id_user'=>$data['list']['id_user'],
-                    'id_active_status'=>1);
-                $list=$this->Job->get_my_job($user_id);
-                $cek['list']  = $data['list'];
-                $cek['content']='App/Job_base/Job_base';
-                $cek['title']='Job Base';
-                $cek['img'] = $data['img'];
-                $cek['joblist']=$list;
-                redirect('index.php/Job');
-            }
-            
+        $mydata     = $this->session->userdata();
+        if ($this->input->post('fee') > 100){
+            $this->session->set_flashdata('notif','Maximum percentage is 100');
+            redirect("index.php/Jobadd",'refresh');
         }else{
-            redirect('index.php/Login');
+            $insert['percentageFee']    = $this->input->post('fee');
+            $insert['jobbase']          = $this->input->post('job');
+            $insert['id_user']          = $mydata['id_user'];
+            $insert['id_active_status'] = 1;
+            $model          = $this->Job->Add_job($insert);
+            $user_id        = array(
+                            'id_user'           =>$mydata['id_user'],
+                            'id_active_status'  =>1
+                        );
+            $list           =$this->Job->get_my_job($user_id);
+            $cek['list']    = $mydata;
+            $cek['content'] ='App/Job_base/Job_base';
+            $cek['title']   ='Job Base';
+            $cek['joblist'] =$list;
+            redirect('index.php/Job');
         }
     }
     public function saveUpdate(){
-        $data = $this->session->flashdata('data');
-        if($data){
-            $this->load->library('session');
-            $this->session->set_flashdata('data', $data);
-            if ( $this->input->post('fee') > 100){
-                $id = $this->input->post('id');
-                $locate ="Updatejob/".$id;
-                echo  "
-                <script>
-                alert('Maximum percentage is 100');
-                document.location.href = '$locate';
-                </script>
-                ";
+        $mydata     = $this->session->userdata();
+        if ( $this->input->post('fee') > 100){
+            $id = $this->input->post('id');
+            $this->session->set_flashdata('notif','Maximum percentage is 100');
+            redirect("index.php/Updatejob/".$id,'refresh');
             }else{
-                $insert['percentageFee'] = $this->input->post('fee');
-                $insert['jobbase'] = $this->input->post('job');
-                $condition['id_user'] = $data['list']['id_user'];
-                $condition['id_jobbase']=$this->input->post('id');
-                $condition['id_active_status'] = 1;
-                $model = $this->Job->Update_job($insert,$condition);
-                $user_id = array(
-                    'id_user'=>$data['list']['id_user'],
-                    'id_active_status'=>1);
-                $list=$this->Job->get_my_job($user_id);
-                $cek['list']  = $data['list'];
-                $cek['content']='App/Job_base/Job_base';
-                $cek['title']='Job Base';
-                $cek['joblist']=$list;
-                $cek['img'] = $data['img'];
+                $insert['percentageFee']        = $this->input->post('fee');
+                $insert['jobbase']              = $this->input->post('job');
+                $condition['id_user']           = $mydata['id_user'];
+                $condition['id_jobbase']        =$this->input->post('id');
+                $condition['id_active_status']  = 1;
+                $model          = $this->Job->Update_job($insert,$condition);
+                $user_id        = array(
+                                'id_user'           =>$mydata['id_user'],
+                                'id_active_status'  =>1
+                            );
+                $list           =$this->Job->get_my_job($user_id);
+                $cek['list']    = $mydata;
+                $cek['content'] ='App/Job_base/Job_base';
+                $cek['title']   ='Job Base';
+                $cek['joblist'] =$list;
                 redirect('index.php/Job');
-            }  
-        }else{
-            redirect('index.php/Login');
-        }
+            }
     }
     public function delete(){
-        $data = $this->session->flashdata('data');
-        if($data){
-            $this->load->library('session');
-            $this->session->set_flashdata('data', $data);
-            $insert['id_active_status'] = 9;
-            $condition['id_user'] = $data['list']['id_user'];
-            $condition['id_jobbase']=$this->uri->segment('2');
-            $condition['id_active_status'] = 1;
-            $model = $this->Job->Update_job($insert,$condition);
-            redirect('index.php/Job');
-        }else{
-            redirect('index.php/Login');
-        }
+        $mydata     = $this->session->userdata();
+        $insert['id_active_status']     = 9;
+        $condition['id_user']           = $mydata['id_user'];
+        $condition['id_jobbase']        = $this->uri->segment('2');
+        $condition['id_active_status']  = 1;
+        $model = $this->Job->Update_job($insert,$condition);
+        redirect('index.php/Job');
     }
     public function Update_job(){
-        $data = $this->session->flashdata('data');
-        if($data){
-            $this->load->library('session');
-            $this->session->set_flashdata('data', $data);
-            $user_id = array(
-                'id_user'=>$data['list']['id_user'],
-                'id_active_status'=>1,
-                'id_jobbase'=> $this->uri->segment('2'));
-            $list=$this->Job->get_my_job($user_id);
-            $cek['list']  = $data['list'];
-            $cek['content']='App/Job_base/inc/Update';
-            $cek['title']='Job Base';
-            $cek['joblist']=$list[0];
-            $cek['img'] = $data['img'];
-            $this->load->view('App/Home/Home',$cek);
-        }else{
-            redirect('index.php/Login');
+        $mydata  = $this->session->userdata();
+        $user_id = array(
+                'id_user'           =>$mydata['id_user'],
+                'id_active_status'  =>1,
+                'id_jobbase'        =>$this->uri->segment('2')
+            );
+        $list = $this->Job->get_my_job($user_id);
+        if(empty($list)){
+            redirect('index.php/Job');
         }
+        $cek['list']    = $mydata;
+        $cek['content'] ='App/Job_base/inc/Update';
+        $cek['title']   ='Job Base';
+        $cek['joblist'] =$list[0];
+        $this->load->view('App/Home/Home',$cek);
     }
 
 }

@@ -7,11 +7,11 @@
           </button>
 
           <!-- Topbar Search -->
-          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+          <form action="<?php echo base_url('index.php/TeamProfile');?>" method="POST" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
             <div class="input-group" >
-              <input type="text" id="searchteam"class="form-control bg-light border-0 small" placeholder="Search your team..." aria-label="Search" aria-describedby="basic-addon2">
+              <input type="text" id="searchteam" name="searchteam"class="form-control bg-light border-0 small" placeholder="Search your team..." aria-label="Search" aria-describedby="basic-addon2">
               <div class="input-group-append">
-                <button class="btn btn-primary" type="button">
+                <button class="btn btn-dark" type="button">
                   <i class="fas fa-search fa-sm"></i>
                 </button>
               </div>
@@ -22,7 +22,7 @@
 
             <!-- Nav Item - Search Dropdown (Visible Only XS) -->
             <li class="nav-item dropdown no-arrow d-sm-none">
-              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-search fa-fw"></i>
               </a>
               <!-- Dropdown - Messages -->
@@ -103,7 +103,7 @@
                 </h6>
                 <a class="dropdown-item d-flex align-items-center" href="#">
                   <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="<?php echo base_url(); ?>/assets/images/userUnknown.png" alt="">
+                    <img class="rounded-circle" src="<?php echo base_url(); ?>/assets/images/userUnknown1.png" alt="">
                     <div class="status-indicator bg-success"></div>
                   </div>
                   <div class="font-weight-bold">
@@ -113,7 +113,7 @@
                 </a>
                 <a class="dropdown-item d-flex align-items-center" href="#">
                   <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="<?php echo base_url(); ?>/assets/images/userUnknown.png" alt="">
+                    <img class="rounded-circle" src="<?php echo base_url(); ?>/assets/images/userUnknown1.png" alt="">
                     <div class="status-indicator"></div>
                   </div>
                   <div>
@@ -123,7 +123,7 @@
                 </a>
                 <a class="dropdown-item d-flex align-items-center" href="#">
                   <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="<?php echo base_url(); ?>/assets/images/userUnknown.png" alt="">
+                    <img class="rounded-circle" src="<?php echo base_url(); ?>/assets/images/userUnknown1.png" alt="">
                     <div class="status-indicator bg-warning"></div>
                   </div>
                   <div>
@@ -133,7 +133,7 @@
                 </a>
                 <a class="dropdown-item d-flex align-items-center" href="#">
                   <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="<?php echo base_url(); ?>/assets/images/userUnknown.png" alt="">
+                    <img class="rounded-circle" src="<?php echo base_url(); ?>/assets/images/userUnknown1.png" alt="">
                     <div class="status-indicator bg-success"></div>
                   </div>
                   <div>
@@ -155,7 +155,7 @@
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="<?php echo base_url('index.php/EditProfile') ?>">
+                <a class="dropdown-item" href="<?php echo base_url('index.php/MyProfile') ?>">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
                 </a>

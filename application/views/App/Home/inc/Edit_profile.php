@@ -1,6 +1,4 @@
-<?php if($this->session->flashdata('notif')){ ?>
-<p class='alert alert-warning'><?php echo $this->session->flashdata('notif')?></p>
-<?php } ?>
+
 <form action="<?php echo base_url();?>index.php/UpdateProfile" method="POST" class="user">
     <style>
         .test {
@@ -15,7 +13,7 @@
                 <img class="test rounded-circle" src="<?php echo isset($list['image'])?base_url('assets/images/user/'.$list['image']):base_url('assets/images/userUnknown1.jpg') ?>">
             </div>
             <div class="d-flex justify-content-center">
-                <a class="m-2 btn btn-warning btn-sm" data-toggle="modal" data-target="#ChangePicture" href="" style="text-decoration: none;">Change Picture</a>
+                <a class="m-2 btn btn-dark text-white btn-sm" data-toggle="modal" data-target="#ChangePicture" href="" style="text-decoration: none;">Change Picture</a>
             </div>
         </div>
         <div class="w-50 flex-column align-content-center">
@@ -25,13 +23,15 @@
             <input type="input" class="w-50 m-2 form-control" id="fullname" name="fullname" placeholder="<?php echo $fullname; ?>" value="<?php echo $fullname; ?>" required>
           Gender
             <input type="input" class="w-50 m-2 form-control" id="gender" name="gender" placeholder="<?php echo $gender; ?>" value="<?php echo $gender; ?>" disabled>
+          Birthday
+            <input class="w-50 m-2 form-control" type="date" id="birthday" name="birthday" value="<?php echo $birthday; ?>" required >
           Phone
             <input type="input" class="w-50 m-2 form-control" id="phone" name="phone" placeholder="<?php echo $phone; ?>" value="<?php echo $phone; ?>" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required>
           E-Mail
-            <input type="input" class="w-50 m-2 form-control" id="mail" name="mail" placeholder="<?php echo $user_mail; ?>" value="<?php echo $user_mail; ?>" required>
+            <input type="email" class="w-50 m-2 form-control" id="mail" name="mail" placeholder="<?php echo $user_mail; ?>" value="<?php echo $user_mail; ?>" required>
           Address
             <textarea class="w-50 m-2 form-control" id="address" name="address" cols="30" rows="4" placeholder="<?php echo $address; ?>"><?php echo $address; ?></textarea>
-            <input class="m-2 btn btn-primary btn-sm" type="submit" name="simpan" value="Save changes">
+            <input class="m-2 btn btn-secondary text-white btn-sm" type="submit" name="simpan" value="Save changes">
         </div>
     </div>
 </form>

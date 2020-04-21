@@ -29,6 +29,10 @@ class Regist_model extends CI_Model {
         }
         return $return;
     }
+    public function update_picture($id,$data){
+        $this->db->where($id);
+        $this->db->update('profile_table', $data);
+    }
 
 }
 

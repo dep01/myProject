@@ -117,7 +117,7 @@
 		})
 	</script>
 	<?php if($this->session->flashdata('notif')){ ?>
-		<script type="text/javascript">
+	<script type="text/javascript">
 		document.getElementById("buttonklick").click()
 	</script>
 	<?php } ?>

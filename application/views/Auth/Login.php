@@ -1,3 +1,6 @@
+<?php if($this->session->flashdata('notif')){ ?>
+	<a data-toggle="modal" id="buttonklick" data-target="#notifModal"></a>
+<?php } ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,7 +38,7 @@
 						Login to myProject
 					</span>
 
-					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+					<div class="wrap-input100">
 						<input class="input100" type="text" name="email" placeholder="Username or email" value="">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
@@ -76,7 +79,22 @@
 		</div>
 	</div>
 	
-	
+<div class="modal fade" id="notifModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Information</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body"><?php echo $this->session->flashdata('notif')?></div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Ok</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 	
 <!--===============================================================================================-->	
@@ -93,8 +111,13 @@
 			scale: 1.1
 		})
 	</script>
+	<?php if($this->session->flashdata('notif')){ ?>
+	<script type="text/javascript">
+		document.getElementById("buttonklick").click()
+	</script>
+	<?php } ?>
 <!--===============================================================================================-->
-	<script src="js/main.js"></script>
+	<script src="<?php echo base_url();?>assets/js/main.js"></script>
 
 </body>
 </html>

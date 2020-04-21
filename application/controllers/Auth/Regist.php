@@ -7,38 +7,35 @@ class Regist extends CI_Controller {
         parent::__construct();
         $this->load->model('Auth/Login_model','Login');
         $this->load->model('Auth/Regist_model','Regist');
+        $this->load->model('App/Profile_model','Profile');
     }
-    public function index()
-    {
+    public function index(){
         $this->load->view('Auth/Regist');
     }
     public function profile(){
-        $this->load->view('Auth/Profil');
-        
+        $this->load->view('Auth/Profil'); 
     }
     public function save_profile(){
         $save = array(
-            'id_user'           => $_POST['id'],
-            'fullname'          =>$_POST['fullname'],
+            'id_user'           =>$_POST['id'],
+            'fullname'          =>str_replace("'","''",$_POST['fullname']),
             'birthday'          =>$_POST['birthday'],
             'id_gender'         =>$_POST['gender'],
             'phone'             =>$_POST['phone'],
-            'address'           =>$_POST['address'],
-            'id_active_status'  =>1
+            'address'           =>str_replace("'","''",$_POST['address']),
+            'id_active_status'  =>1,
+            'image'             =>$this->session->flashdata('image')
         );
         $model          =$this->Regist->save_profile($save);
-        $data['list']   = $save;
-        $data['content']='App/Project/Project_list';
-        $data['title']  ='myProject';
         redirect('index.php/Login', 'refresh');
     }
     public function check_username(){
-        $username = $_POST['username'];
-        $pass = $_POST['pass'];
-        $cpass =$_POST['cpass'];
-        $mail =$_POST['mail'];
+        $username   = str_replace("'","''",$_POST['username']);
+        $pass       = str_replace("'","''",$_POST['pass']);
+        $cpass      = str_replace("'","''",$_POST['cpass']);
+        $mail       = str_replace("'","''",$_POST['mail']);
         $this->load->model('Encrypt');
-        $encrypt=$this->Encrypt->Encrypt_data($pass);
+        $encrypt    =$this->Encrypt->Encrypt_data($pass);
         if(strlen($pass) < 8){
             $this->session->set_flashdata('notif', 'Minimum password is 8 character');
             redirect('index.php/Auth/Regist');
@@ -47,19 +44,19 @@ class Regist extends CI_Controller {
             $this->session->set_flashdata('notif', 'Password must be same');
             redirect('index.php/Auth/Regist');
         }else{
-            $data= array(
-                'username'=>$username,
-                'password'=>$encrypt,
-                'user_mail'=>$mail,
-                'verify_code'=>123456,
-                'id_verify_status'=>2,
-                'id_active_status'=>1
+            $data = array(
+                'username'          =>$username,
+                'password'          =>$encrypt,
+                'user_mail'         =>$mail,
+                'verify_code'       =>123456,
+                'id_verify_status'  =>2,
+                'id_active_status'  =>1
             );
             $data_user=array(
-                'username'=>$username,
+                'username'          =>$username,
             );
             $data_mail=array(
-                'user_mail'=>$mail,
+                'user_mail'         =>$mail,
             );
             $model=$this->Regist->check_username($data,$data_user,$data_mail);
             if($model==0){
@@ -72,26 +69,34 @@ class Regist extends CI_Controller {
     public function fileUpload(){
 
         if(!empty($_FILES['file']['name'])){
-     
-          // Set preference
-          $config['upload_path'] = 'assets/images/user/'; 
-          $config['allowed_types'] = 'jpg|jpeg|png|gif';
-          $config['max_size'] = '3000'; // max_size in kb
-          $config['file_name'] = $this->uri->segment('4').".jpg";
-          $filepath = "assets/images/user/".$this->uri->segment('4');
-          unlink($filepath.".jpg");
+          $new_name                 = time().$_FILES["file"]['name'];
+          $config['upload_path']    = 'assets/images/user/'; 
+          $config['allowed_types']  = 'jpg|jpeg|png|gif';
+          $config['max_size']       = '3000'; // max_size in kb
+          $config['file_name']      = $new_name;
           $this->load->library('upload',$config); 
           if($this->upload->do_upload('file')){
             $uploadData = $this->upload->data();
-            $data = $this->session->flashdata('data');
-            if($data){
-                $this->load->library('session');
-                $cek['list']  = $data['list'];
-                $cek['img'] = "images/user/".$data['list']['id_user'].".jpg";
-                $cek['content']='App/Project/Project_list';
-                $cek['title']='MyProject';
-                $this->session->set_flashdata('data', $cek);
+            $sess       = $this->session->userdata('username');
+            if (!$sess){
+                $this->session->set_flashdata('image',$new_name);
+            }else{
+                $mydata     = $this->session->userdata();
+                if($mydata['image']){
+                    unlink('assets/images/user/'.$mydata['image']);
+                }
+                $id_user    = array(
+                            'id_user'=>$mydata['id_user']
+                        );
+                $image      = array(
+                            'image'  => $new_name
+                        );
+                $model      = $this->Regist->update_picture($id_user,$image);
+                $id_user    = array('profile_table.id_user'=> $mydata['id_user']);
+                $model      = $this->Profile->get_my_profile($id_user);
+                $this->session->set_userdata($model[0]);
             }
+
           }
 
          

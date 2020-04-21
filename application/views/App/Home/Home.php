@@ -1,3 +1,6 @@
+<?php if($this->session->flashdata('notif')){ ?>
+	<a data-toggle="modal" id="buttonklick" data-target="#notifModal"></a>
+<?php } ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,8 +32,8 @@
   <link href="<?php echo base_url();?>assets/vendor/fontawesome-free/css/all.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
-  <link href='https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/dropzone.css' type='text/css' rel='stylesheet'>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/dropzone.js' type='text/javascript'></script>
+  <!-- <link href='https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/dropzone.css' type='text/css' rel='stylesheet'> -->
+  <!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/dropzone.js' type='text/javascript'></script> -->
 
   <!-- Custom styles for this template-->
   <link href="<?php echo base_url();?>assets/css/sb-admin-2.css" rel="stylesheet">
@@ -73,7 +76,7 @@
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; myProject 2020</span>
+            <span>Copyright &copy; MyProject 2020</span>
           </div>
         </div>
       </footer>
@@ -108,7 +111,25 @@
       </div>
     </div>
   </div>
-
+  <!-- notification modal -->
+  <div class="modal fade" id="notifModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Information</h5>
+                  <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">×</span>
+                  </button>
+              </div>
+              <div class="modal-body">
+                  <?php echo $this->session->flashdata('notif')?>
+              </div>
+              <div class="modal-footer">
+                  <button class="btn btn-secondary" type="button" data-dismiss="modal">Ok</button>
+              </div>
+          </div>
+      </div>
+  </div>
   <!-- Bootstrap core JavaScript-->
   <script src="<?php echo base_url();?>assets/vendor/jquery/jquery.min.js"></script>
   <script src="<?php echo base_url();?>assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -132,15 +153,20 @@
               source: "<?php echo base_url();?>index.php/App/Team/search_team/",
             });
         });
-    </script>
+  </script>
 
-<script>
-    // Add restrictions
-    Dropzone.options.fileupload = {
-      acceptedFiles: 'image/*',
-      maxFilesize: 3 // MB
-    };
-    </script>
+  <script>
+      // Add restrictions
+      Dropzone.options.fileupload = {
+        acceptedFiles: 'image/*',
+        maxFilesize: 3 // MB
+      };
+  </script>
+  <?php if($this->session->flashdata('notif')){ ?>
+	<script type="text/javascript">
+		document.getElementById("buttonklick").click()
+	</script>
+	<?php } ?>
 </body>
 
 </html>

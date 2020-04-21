@@ -21,7 +21,7 @@
                   <tbody>
                   <?php foreach($listteam as $list): ?>
                     <tr>
-                      <td><?php echo $list['fullname']; ?></td>
+                      <td><?php echo str_replace("''","'",$list['fullname']); ?></td>
                       <td><?php echo $list['list_friend_status']; ?></td>
                     </tr>
                   <?php endforeach;?>
