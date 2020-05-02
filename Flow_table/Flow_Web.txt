@@ -7,7 +7,7 @@ kebutuhan
 4.Persentase hasil yang didapatkan sesuai job base
 5.Penyusunan time line project
 6.Management jobbase
-7.Siapapun bisa menggunakannya dan mennyetting sesuai dengan kebutuhan tiap akun
+7.Siapapun bisa menggunakannya dan menyetting sesuai dengan kebutuhan tiap akun
 
 flow
 1.Create account/Login

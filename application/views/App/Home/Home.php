@@ -153,6 +153,9 @@
               source: "<?php echo base_url();?>index.php/App/Team/search_team/",
             });
         });
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+            });
   </script>
 
   <script>

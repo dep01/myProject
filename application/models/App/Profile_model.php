@@ -4,10 +4,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Profile_model extends CI_Model {
 
     public function get_my_profile($id){
-        $this->db->select('*');
-        $this->db->from('profile_table');
-        $this->db->join('user_table','profile_table.id_user = user_table.id_user');
-        $this->db->join('gender_table','profile_table.id_gender = gender_table.id_gender');
+        $this->db->select('b.username,b.id_user,a.fullname,a.birthday,a.phone,a.address,a.image,b.user_mail,c.gender');
+        $this->db->from('profile_table a');
+        $this->db->join('user_table b','a.id_user = b.id_user');
+        $this->db->join('gender_table c','a.id_gender = c.id_gender');
         $this->db->where($id);
         $data = $this->db->get()->result_array(); 
         return $data;
@@ -21,11 +21,11 @@ class Profile_model extends CI_Model {
         $this->db->update('user_table', $user);
     }
     public function cek_mail($mail){
-        $condition = array(
-            'user_mail' => $mail
-        );
-        $query = $this->db->get_where('user_table', $condition);
-        $result = $query->result_array();
+        $condition  = array(
+                    'user_mail' => $mail
+            );
+        $query      = $this->db->get_where('user_table', $condition);
+        $result     = $query->result_array();
         return $result;
     }
 

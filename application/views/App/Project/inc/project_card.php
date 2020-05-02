@@ -1,11 +1,14 @@
-<div class="card padding-card">
-  <div class="card-header">
-    <?php echo $list['title'] ?>
+<div class="w-50 card padding-card">
+  <div class="card-header font-weight-bold">
+    <?php echo $list['project_name'] ?>
   </div>
-  <div class="card-body">
-    <h5 class="card-title"><?php echo $list['author'] ?></h5>
-    <p class="card-text">Start <?php echo $list['start'] ?> </p>
-    <p class="card-text">End <?php echo $list['start'] ?> </p>
-    <a href="#" class="btn btn-primary">View detail</a>
+  <div class="card-body font-weight-bold">
+  Author
+    <h5 class="card-title font-weight-normal"><?php echo $list['fullname'] ?></h5>
+    Start
+    <p class="card-text font-weight-normal"><?php echo $list['project_start'] ?> </p>
+    End
+    <p class="card-text font-weight-normal"> <?php echo $list['project_end'] ?> </p>
+    <a href="#" class="btn btn-secondary">View detail</a>
   </div>
 </div>

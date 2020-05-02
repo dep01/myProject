@@ -1,0 +1,6 @@
+Proses pembuatan project
+1. Author menginput data(Nama project, Bayaran project,Tanggal mulai bekerja,deadline project)
+2. Setelah menyimpan data tersebut kemudian author mulai mencari team yang akan diajak mengerjakan project tersebut serta jobbase dia dan teamnya.
+3. Team mendapatkan notifikasi jika ada yang mengajaknya mengerjakan project dan berhak memutuskan dia ikut atau tidak dalam project tersebut. Notifikasi dikirim melalui email dan notifikasi dengan informasi job yang dia lakukan dan hasil yang dia dapatkan
+4. Persentase job bisa di ubah sebelum project mulai dikerjakan.
+4. Persentase pembagian hasil per project.

@@ -5,9 +5,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Team extends CI_Controller {
 public function __construct(){
     parent::__construct();
-    $this->load->database();
     $this->load->model('App/Team_model','Team');
     $this->load->model('Auth/Login_model','Login');
+    $this->load->model('App/Profile_model','Profile');
     $sess   = $this->session->userdata('username');
     if(!$sess){
         redirect('index.php/Login');
@@ -16,7 +16,9 @@ public function __construct(){
     public function index(){
         $mydata         = $this->session->userdata();
         $list           = $this->Team->get_my_team($mydata['id_user']);
-        $cek['list']    = $mydata;
+        $id_user        = array('a.id_user'=> $mydata['id_user']);
+        $profile        = $this->Profile->get_my_profile($id_user);
+        $cek['list']    = $profile[0];
         $cek['content'] ='App/Team/My_team';
         $cek['title']   ='MyTeam';
         $cek['listteam']= $list;
@@ -25,12 +27,12 @@ public function __construct(){
     public function search_team(){
         $mydata = $this->session->userdata();
         if (isset($_GET['term'])) {
-            $searchTerm =str_replace("'","''",$_GET['term']);
+            $searchTerm =$_GET['term'];
             $id_user    = $mydata['id_user'];
             $list       = $this->Team->search_team($searchTerm,$id_user);
             if (count($list) > 0) {
             foreach ($list as $row)
-                $arr_result[] = str_replace("''","'",$row['userdata']);
+                $arr_result[] = $row['userdata'];
             }else{
                 $arr_result[] = 'Oops!! Nobody was found!';
             }
@@ -39,6 +41,8 @@ public function __construct(){
     }
     public function profile_team(){
         $mydata     = $this->session->userdata();
+        $id_user    = array('a.id_user'=> $mydata['id_user']);
+        $profile    = $this->Profile->get_my_profile($id_user);
         $condition  = array(
             'a.id_user'=> $this->uri->segment('2'),
         );
@@ -47,10 +51,10 @@ public function __construct(){
             $teamproject            = $this->Login->count_project($model[0]['id_user']);
             $teamstatus             = $this->Team->check_team($mydata['id_user'],$model[0]['id_user']);
             if ($teamstatus){
-                $cek['idteamstatus']  = $teamstatus[0]['id_list_friend_status'];
+                $cek['idteamstatus']= $teamstatus[0]['id_list_friend_status'];
                 $cek['teamstatus']  = $teamstatus[0]['list_friend_status'];
             }else{
-                $cek['idteamstatus']  = '';
+                $cek['idteamstatus']= '';
                 $cek['teamstatus']  = '';
             }
             $cek['content']         = 'App/Team/inc/Find';
@@ -65,12 +69,14 @@ public function __construct(){
             $this->session->set_flashdata('notif','Opps!! Nobody was found!');
             redirect('index.php/Team','refresh');
         };
-        $cek['list']    = $mydata;
+        $cek['list']    = $profile[0];
         $this->load->view('App/Home/Home',$cek);
     }
     public function profile(){
         $mydata     = $this->session->userdata();
-        $repalce    = str_replace("'","''",$_POST['searchteam']);
+        $id_user    = array('a.id_user'=> $mydata['id_user']);
+        $profile    = $this->Profile->get_my_profile($id_user);
+        $repalce    = $_POST['searchteam'];
         $string     = ' ' .$repalce;
         $start      = '( ';
         $end        =' )';
@@ -100,10 +106,10 @@ public function __construct(){
                 $teamproject            = $this->Login->count_project($model[0]['id_user']);
                 $teamstatus             = $this->Team->check_team($mydata['id_user'],$model[0]['id_user']);
                 if ($teamstatus){
-                    $cek['idteamstatus']  = $teamstatus[0]['id_list_friend_status'];
+                    $cek['idteamstatus']= $teamstatus[0]['id_list_friend_status'];
                     $cek['teamstatus']  = $teamstatus[0]['list_friend_status'];
                 }else{
-                    $cek['idteamstatus']  = '';
+                    $cek['idteamstatus']= '';
                     $cek['teamstatus']  = '';
                 }
                 $cek['content']         = 'App/Team/inc/Find';
@@ -120,7 +126,7 @@ public function __construct(){
             };
 
         };
-        $cek['list']    = $mydata;
+        $cek['list']    = $profile[0];
         $this->load->view('App/Home/Home',$cek);
     }
     public function add_team(){

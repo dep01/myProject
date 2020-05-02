@@ -35,14 +35,14 @@
 
 				<form class="login100-form validate-form" method="POST" action="<?php echo base_url();?>index.php/Auth">
 					<span class="login100-form-title">
-						Login to myProject
+						Login to MyProject
 					</span>
 
 					<div class="wrap-input100">
 						<input class="input100" type="text" name="email" placeholder="Username or email" value="">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
-							<i class="fa fa-envelope" aria-hidden="true"></i>
+							<i class="fa fa-user" aria-hidden="true"></i>
 						</span>
 					</div>
 					<div class="wrap-input100 validate-input" data-validate = "Password is required">

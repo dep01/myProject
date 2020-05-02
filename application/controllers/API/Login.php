@@ -10,11 +10,11 @@ public function __construct(){
     public function index()
     {
 
-        $username = $_POST['username'];
-        $password = $_POST['pass'];
+        $username   = $_POST['username'];
+        $password   = $_POST['pass'];
         $this->load->model('Encrypt');
-        $encrypt=$this->Encrypt->Encrypt_data($password);
-        $user = array(
+        $encrypt    =$this->Encrypt->Encrypt_data($password);
+        $user       = array(
             'username'=>$username,
             'password'=>$encrypt
         );

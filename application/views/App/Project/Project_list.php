@@ -9,7 +9,7 @@
                           YOUR PROJECT
                       </div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800">
-                          <?php echo $list['project_total'] ?>
+                          <?php echo $project_count['project_total'] ?>
                       </div>
                   </div>
                   <div class="col-auto">
@@ -28,7 +28,7 @@
                           FINISHED
                       </div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800">
-                          <?php echo $list['project_finished'] ?>
+                          <?php echo $project_count['project_finished'] ?>
                       </div>
                   </div>
                   <div class="col-auto">
@@ -47,7 +47,7 @@
                           ON PROGRESS
                       </div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800">
-                          <?php echo $list['project_progress'] ?>
+                          <?php echo $project_count['project_progress'] ?>
                       </div>
                   </div>
                   <div class="col-auto">
@@ -58,26 +58,38 @@
       </div>
   </div>
 </div>
-<?php 
-    $data['list']=array(
-        ['title'=>'Perpustakaan',
-        'author'=>'Dani andri',
-        'start'=>'28,December 2019',
-        'end'=>'28,February 2020'],
-        ['title'=>'Project Management',
-        'author'=>'Diaz erlangga',
-        'start'=>'28,February 2020',
-        'end'=>'28,Mei 2020'],
-        ['title'=>'Cloud Management',
-        'author'=>'Rio baskara',
-        'start'=>'28,March 2020',
-        'end'=>'28,Mei 2020']
-    );
-    
- ?>
 <div class="column">
-<a href="#" class="btn btn-primary">Create new project</a>
-    <?php foreach($data['list'] as $list): ?>
-      <?php include('inc/Project_card.php'); ?>
-    <?php endforeach;?>
+<div class="m-1 flex-row d-flex">
+<a href="<?php echo base_url('index.php/CreateProject'); ?>" class="m-2 btn btn-dark">Create new project</a>
+<a href="<?php echo base_url('index.php/ManageMyProject'); ?>" class="m-2 btn btn-dark">Manage MyProject</a>
+</div>
+<?php if($projectlist){ ?>
+    <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-dark">MyProject</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Project</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php foreach($projectlist as $list): ?>
+                        <tr>
+                            <td>
+                            <?php include('inc/Project_card.php'); ?>
+                            </td>
+                        </tr>
+                    <?php endforeach;?>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+<?php }else { ?>
+    <h1 class="h3 mt-5 d-flex justify-content-center text-gray-800">Create your first project</h1>
+<?php } ;?>
 </div>

@@ -18,11 +18,11 @@ class Regist extends CI_Controller {
     public function save_profile(){
         $save = array(
             'id_user'           =>$_POST['id'],
-            'fullname'          =>str_replace("'","''",$_POST['fullname']),
+            'fullname'          =>$_POST['fullname'],
             'birthday'          =>$_POST['birthday'],
             'id_gender'         =>$_POST['gender'],
             'phone'             =>$_POST['phone'],
-            'address'           =>str_replace("'","''",$_POST['address']),
+            'address'           =>$_POST['address'],
             'id_active_status'  =>1,
             'image'             =>$this->session->flashdata('image')
         );
@@ -30,10 +30,10 @@ class Regist extends CI_Controller {
         redirect('index.php/Login', 'refresh');
     }
     public function check_username(){
-        $username   = str_replace("'","''",$_POST['username']);
-        $pass       = str_replace("'","''",$_POST['pass']);
-        $cpass      = str_replace("'","''",$_POST['cpass']);
-        $mail       = str_replace("'","''",$_POST['mail']);
+        $username   = $_POST['username'];
+        $pass       = $_POST['pass'];
+        $cpass      = $_POST['cpass'];
+        $mail       = $_POST['mail'];
         $this->load->model('Encrypt');
         $encrypt    =$this->Encrypt->Encrypt_data($pass);
         if(strlen($pass) < 8){

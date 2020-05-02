@@ -50,7 +50,7 @@
 
 				<form class="login100-form validate-form" method="POST" action="<?php echo base_url();?>index.php/Auth/Regist/check_username">
 					<span class="login100-form-title">
-                    Register to myProject
+                    Register to MyProject
 					</span>
 					<div class="wrap-input100 validate-input" >
 						<input class="text" type="email" name="mail" placeholder="email" value="" required > 
@@ -123,7 +123,7 @@
 	<?php } ?>
 
 <!--===============================================================================================-->
-	<script src="js/main.js"></script>
+	<script src="<?php echo base_url();?>assets/js/main.js"></script>
 
 </body>
 </html>

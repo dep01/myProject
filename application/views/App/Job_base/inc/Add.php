@@ -13,8 +13,8 @@
         </tr>  
         <tr>
            <td>
-             <input class="btn btn-primary btn-sm" type="submit" name="simpan" value="Add">
-             <a class="btn btn-warning btn-sm" href="<?php echo base_url();?>index.php/Job" style="text-decoration: none;">Cancel</a>
+             <input class="btn btn-dark btn-sm text-white" type="submit" name="simpan" value="Add">
+             <a class="btn btn-secondary btn-sm text-white" href="<?php echo base_url();?>index.php/Job" style="text-decoration: none;">Cancel</a>
             </td>
         </tr>     
 

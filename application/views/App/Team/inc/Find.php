@@ -6,7 +6,7 @@
 </style>
 <h1 class="h3 mr-5 d-flex justify-content-center text-gray-800">Team Profile</h1>
 <div class="row h3 mb-3 d-flex">
-<a href="<?php echo base_url('index.php/AddTeam/'.$teamlist['id_user']); ?>"  class="ml-auto btn btn-dark d-flex <?php echo ($idteamstatus==1|| $idteamstatus==3)?'disabled':' '; ?>"><?php echo ($idteamstatus)?$teamstatus:'Follow'; ?></a> 
+<a href="<?php echo base_url('index.php/AddTeam/'.$teamlist['id_user']); ?>"  class="ml-auto d-flex  btn btn<?php echo ($idteamstatus==1|| $idteamstatus==3)?'-white text-dark font-weight-bold disabled':'-dark text-white'; ?>"><?php echo ($idteamstatus)?$teamstatus:'Follow'; ?></a> 
 </div>
 
 <div class="row align-content-center ">
@@ -18,13 +18,13 @@
     <div class="w-50 flex-column align-content-center text-dark">
             <?php include('Detail_project.php') ?>
       Username
-        <input type="text" class="w-50 m-2 form-control bg-white text-dark" value="<?php echo str_replace("''","'",$teamlist['username']); ?>" disabled>
+        <input type="text" class="w-50 m-2 form-control bg-white text-dark" value="<?php echo $teamlist['username']; ?>" disabled>
       Fullname
-        <input type="text" class="w-50 m-2 form-control bg-white text-dark" value="<?php echo str_replace("''","'",$teamlist['fullname']); ?>" disabled>
+        <input type="text" class="w-50 m-2 form-control bg-white text-dark" value="<?php echo $teamlist['fullname']; ?>" disabled>
       Phone
         <input type="text" class="w-50 m-2 form-control bg-white text-dark" value="<?php echo $teamlist['phone']; ?>" disabled>
       E-mail
-        <input type="text" class="w-50 m-2 form-control bg-white text-dark" value="<?php echo str_replace("''","'",$teamlist['user_mail']); ?>" disabled>
+        <input type="text" class="w-50 m-2 form-control bg-white text-dark" value="<?php echo $teamlist['user_mail']; ?>" disabled>
 
     </div>
     

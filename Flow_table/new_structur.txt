@@ -153,3 +153,22 @@ id_project_payment_status int not null, CONSTRAINT fk_id_project_payment_status_
 created datetime default CURRENT_TIMESTAMP,
 updated datetime default CURRENT_TIMESTAMP on UPDATE CURRENT_TIMESTAMP
 );
+---------2020-04-22-----------------------------New
+create table project_team_status(
+id_project_team_status int auto_increment not null primary key,
+project_team_status varchar(15) not null,
+created datetime default CURRENT_TIMESTAMP,
+updated datetime default CURRENT_TIMESTAMP on UPDATE CURRENT_TIMESTAMP,
+id_active_status int not null ,constraint fk_id_active_status_project_team_status foreign key(id_active_status) references active_status(id_active_status)
+);
+create table project_team(
+id_project int not null ,
+constraint fk_id_project_project_team foreign key (id_project) references project(id_project),
+id_user int not null,
+constraint fk_id_user_project_team foreign key (id_user) references user_table(id_user),
+id_jobbase int not null,
+constraint fk_id_jobbase_project_team foreign key (id_jobbase) references jobbase_table(id_jobbase),
+percentageFee int not null,
+fee decimal(18,2) not null,
+id_project_team_status int not null
+)

@@ -26,3 +26,5 @@ INSERT INTO `verify_status` (`id_verify_status`, `verify_status`, `created`, `up
 (2, 'onverify', '2020-03-19 15:59:56', '2020-03-19 15:59:56'),
 (3, 'verify', '2020-03-19 15:59:56', '2020-03-19 15:59:56');
 
+insert into project_team_status(project_team_status,id_active_status)values('Request',1),('Accepted',1),('Rejected',1)
+

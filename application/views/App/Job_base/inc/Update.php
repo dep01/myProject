@@ -14,8 +14,8 @@
         </tr>  
         <tr>
            <td>
-             <input class="btn btn-primary btn-sm" type="submit" name="simpan" value="Update">
-             <a class="btn btn-warning btn-sm" href="<?php echo base_url();?>index.php/Job" style="text-decoration: none;">Cancel</a>
+             <input class="btn btn-dark btn-sm" type="submit" name="simpan" value="Update">
+             <a class="btn btn-secondary btn-sm" href="<?php echo base_url();?>index.php/Job" style="text-decoration: none;">Cancel</a>
             </td>
         </tr>     
 

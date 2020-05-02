@@ -13,11 +13,11 @@ public function __construct(){
     {
         $data=$this->profile->get_profile();
         $response=array(
-            'msg'=>'Profile',
+            'msg'   =>'Profile',
             'status'=>true,
-            'data'=>$data
+            'data'  =>$data
         );
-        header('Content-Type: application/json');
+        header('Content-Type: application/xml');
         echo json_encode($response,true);
     }
 

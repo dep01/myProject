@@ -6,6 +6,7 @@ class Job_base extends CI_Controller {
 public function __construct(){
     parent:: __construct();
     $this->load->model('App/Job_model','Job');
+    $this->load->model('App/Profile_model','Profile');
     $sess   = $this->session->userdata('username');
     if(!$sess){
         redirect('index.php/Login');
@@ -13,12 +14,14 @@ public function __construct(){
 }
     public function index(){
         $mydata     = $this->session->userdata();
+        $id_user    = array('a.id_user'=> $mydata['id_user']);
+        $profile    = $this->Profile->get_my_profile($id_user);
         $user_id    = array(
                     'id_user'           =>$mydata['id_user'],
                     'id_active_status'  =>1
                 );
         $list           =$this->Job->get_my_job($user_id);
-        $cek['list']    = $mydata;
+        $cek['list']    = $profile[0];
         $cek['content'] ='App/Job_base/Job_base';
         $cek['title']   ='Job Base';
         $cek['joblist'] =$list;
@@ -26,12 +29,14 @@ public function __construct(){
     }
     public function Add_job(){
         $mydata     = $this->session->userdata();
+        $id_user    = array('a.id_user'=> $mydata['id_user']);
+        $profile    = $this->Profile->get_my_profile($id_user);
         $user_id    = array(
                     'id_user'           =>$mydata['id_user'],
                     'id_active_status'  =>1
                         );
         $list=$this->Job->get_my_job($user_id);
-        $cek['list']    = $mydata;
+        $cek['list']    = $profile[0];
         $cek['content'] ='App/Job_base/inc/add';
         $cek['title']   ='Job Base';
         $cek['joblist'] =$list;
@@ -43,6 +48,8 @@ public function __construct(){
             $this->session->set_flashdata('notif','Maximum percentage is 100');
             redirect("index.php/Jobadd",'refresh');
         }else{
+            $id_user    = array('a.id_user'=> $mydata['id_user']);
+            $profile    = $this->Profile->get_my_profile($id_user);
             $insert['percentageFee']    = $this->input->post('fee');
             $insert['jobbase']          = $this->input->post('job');
             $insert['id_user']          = $mydata['id_user'];
@@ -53,7 +60,7 @@ public function __construct(){
                             'id_active_status'  =>1
                         );
             $list           =$this->Job->get_my_job($user_id);
-            $cek['list']    = $mydata;
+            $cek['list']    = $profile[0];
             $cek['content'] ='App/Job_base/Job_base';
             $cek['title']   ='Job Base';
             $cek['joblist'] =$list;
@@ -62,8 +69,10 @@ public function __construct(){
     }
     public function saveUpdate(){
         $mydata     = $this->session->userdata();
+        $id_user    = array('a.id_user'=> $mydata['id_user']);
+        $profile    = $this->Profile->get_my_profile($id_user);
         if ( $this->input->post('fee') > 100){
-            $id = $this->input->post('id');
+            $id     = $this->input->post('id');
             $this->session->set_flashdata('notif','Maximum percentage is 100');
             redirect("index.php/Updatejob/".$id,'refresh');
             }else{
@@ -78,7 +87,7 @@ public function __construct(){
                                 'id_active_status'  =>1
                             );
                 $list           =$this->Job->get_my_job($user_id);
-                $cek['list']    = $mydata;
+                $cek['list']    = $profile[0];
                 $cek['content'] ='App/Job_base/Job_base';
                 $cek['title']   ='Job Base';
                 $cek['joblist'] =$list;
@@ -96,6 +105,8 @@ public function __construct(){
     }
     public function Update_job(){
         $mydata  = $this->session->userdata();
+        $id_user = array('a.id_user'=> $mydata['id_user']);
+        $profile = $this->Profile->get_my_profile($id_user);
         $user_id = array(
                 'id_user'           =>$mydata['id_user'],
                 'id_active_status'  =>1,
@@ -105,7 +116,7 @@ public function __construct(){
         if(empty($list)){
             redirect('index.php/Job');
         }
-        $cek['list']    = $mydata;
+        $cek['list']    = $profile[0];
         $cek['content'] ='App/Job_base/inc/Update';
         $cek['title']   ='Job Base';
         $cek['joblist'] =$list[0];
