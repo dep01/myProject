@@ -20,6 +20,9 @@ public function __construct(){
         $id_user          = array('a.id_user'=> $mydata['id_user']);
         $profile          = $this->Profile->get_my_profile($id_user);
         $data['list']         = $profile[0];
+        $data['following']    = $profile['following'] ;
+        $data['newproject']   = $profile['newproject'] ;
+        $data['total_notify'] = $profile['total_notify'] ;
         $data['content']      ='App/Project/Project_list';
         $data['title']        ='MyProject';
         $data['project_count']=$project_count;
@@ -33,6 +36,9 @@ public function __construct(){
         $cek['list']    = $profile[0];
         $cek['content'] ='App/Home/inc/Edit_profile';
         $cek['title']   ='Profile';
+        $cek['following']= $profile['following'] ;
+        $cek['newproject']   = $profile['newproject'] ;
+        $cek['total_notify'] = $profile['total_notify'] ;
         $this->load->view('App/Home/Home',$cek);
     }
     public function update_profile(){
@@ -59,22 +65,22 @@ public function __construct(){
         );
         $this->Profile->update_profile($id_user,$profile);
         $id_user    = array('a.id_user'=> $mydata['id_user']);
-        // $model      = $this->Profile->get_my_profile($id_user);
-        // $session    =array(
-        //     'id_user'       => $model[0]['id_user'],
-        //     'fullname'      => str_replace("''","'",$model[0]['fullname']),
-        //     'birthday'      => $model[0]['birthday'],
-        //     'phone'         => $model[0]['phone'],
-        //     'address'       => str_replace("''","'",$model[0]['address']),
-        //     'image'         => $model[0]['image'],
-        //     'username'      => str_replace("''","'",$model[0]['username']),
-        //     'user_mail'     => str_replace("''","'",$model[0]['user_mail']),
-        //     'gender'        => $model[0]['gender'],
-        // );
-        // $this->session->set_userdata($session);
         redirect('index.php/Home');
     }
-
+    public function accept_project(){
+        $mydata         = $this->session->userdata();
+        $id_project     = $this->uri->segment('2');
+        $this->db->set(array('id_project_team_status'=> 2));
+        $this->db->where(array('id_user'=> $mydata['id_user'],'id_project'=>$id_project));
+        $this->db->update('project_team');
+        redirect('index.php/Home');
+    }
+    public function decline_project(){
+        $mydata         = $this->session->userdata();
+        $id_project     = $this->uri->segment('2');
+        $this->db->delete('project_team',array('id_user'=> $mydata['id_user'],'id_project'=>$id_project));
+        redirect('index.php/Home');
+    }
 
 
 }

@@ -25,6 +25,9 @@ public function __construct(){
         $cek['content'] ='App/Job_base/Job_base';
         $cek['title']   ='Job Base';
         $cek['joblist'] =$list;
+        $cek['following']= $profile['following'] ;
+        $cek['newproject']   = $profile['newproject'] ;
+        $cek['total_notify'] = $profile['total_notify'] ;
         $this->load->view('App/Home/Home',$cek);
     }
     public function Add_job(){
@@ -40,6 +43,9 @@ public function __construct(){
         $cek['content'] ='App/Job_base/inc/add';
         $cek['title']   ='Job Base';
         $cek['joblist'] =$list;
+        $cek['following']= $profile['following'] ;
+        $cek['newproject']   = $profile['newproject'] ;
+        $cek['total_notify'] = $profile['total_notify'] ;
         $this->load->view('App/Home/Home',$cek);
     }
     public function saveAdd(){
@@ -61,9 +67,12 @@ public function __construct(){
                         );
             $list           =$this->Job->get_my_job($user_id);
             $cek['list']    = $profile[0];
+            $cek['following']= $profile['following'] ;
             $cek['content'] ='App/Job_base/Job_base';
             $cek['title']   ='Job Base';
             $cek['joblist'] =$list;
+            $cek['newproject']   = $profile['newproject'] ;
+            $cek['total_notify'] = $profile['total_notify'] ;
             redirect('index.php/Job');
         }
     }
@@ -74,7 +83,7 @@ public function __construct(){
         if ( $this->input->post('fee') > 100){
             $id     = $this->input->post('id');
             $this->session->set_flashdata('notif','Maximum percentage is 100');
-            redirect("index.php/Updatejob/".$id,'refresh');
+            redirect('index.php/Job');
             }else{
                 $insert['percentageFee']        = $this->input->post('fee');
                 $insert['jobbase']              = $this->input->post('job');
@@ -91,6 +100,9 @@ public function __construct(){
                 $cek['content'] ='App/Job_base/Job_base';
                 $cek['title']   ='Job Base';
                 $cek['joblist'] =$list;
+                $cek['following']    = $profile['following'] ;
+                $cek['newproject']   = $profile['newproject'] ;
+                $cek['total_notify'] = $profile['total_notify'] ;
                 redirect('index.php/Job');
             }
     }
@@ -117,9 +129,12 @@ public function __construct(){
             redirect('index.php/Job');
         }
         $cek['list']    = $profile[0];
+        $cek['following']    = $profile['following'] ;
         $cek['content'] ='App/Job_base/inc/Update';
         $cek['title']   ='Job Base';
         $cek['joblist'] =$list[0];
+        $cek['newproject']   = $profile['newproject'] ;
+        $cek['total_notify'] = $profile['total_notify'] ;
         $this->load->view('App/Home/Home',$cek);
     }
 

@@ -49,25 +49,57 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
+
+// -----Route Default
+$route['404_override'] = '';
+$route['translate_uri_dashes'] = FALSE;
 $route['default_controller'] = 'welcome';
+$route['Home']='App/Home/index';
+
+
+// -----Route Auth
 $route['Login']='Auth/Login/index';
 $route['Auth']='Auth/Login/Validate';
-$route['Home']='App/Home/index';
-$route['Job']='App/Job_base/index';
+
+// ----Route Team
 $route['Team']='App/Team/index';
+$route['TeamProfile']='App/Team/profile';
+$route['ProfileTeam/:num']='App/Team/profile_team';
+$route['AddTeam/:num']='App/Team/add_team';
+$route['DeclineTeam/:num']='App/Team/decline_team';
+
+// -----Route Project
+$route['RequestTeam/:any']='App/Project/search_team_project';
+$route['CreateProject']='App/Project/Project_create';
+$route['NewProject']='App/Project/save_new_project';
+$route['ManageMyProject']='App/Project/manage_project';
+$route['AddTeamProject']='App/Project/add_team';
+$route['AddJobProject/:any']='App/Project/add_job';
+$route['UpdateStatus/:any/:any']='App/Project/update_project_status';
+$route['Settings/:any']='App/Project/project_settings';
+$route['AcceptProject/:any']='App/Home/accept_project';
+$route['DeclineProject/:any']='App/Home/decline_project';
+
+// -----Route Job
+$route['Job']='App/Job_base/index';
 $route['Jobadd']='App/Job_base/Add_job';
 $route['saveJob']='App/Job_base/saveAdd';
 $route['saveJobUpdate']='App/Job_base/saveUpdate';
 $route['deletejob/:num']='App/Job_base/delete';
 $route['Updatejob/:num']='App/Job_base/Update_job';
+
+
+// -----Route Profile
 $route['MyProfile']='App/Home/edit_profile';
 $route['UpdateProfile']='App/Home/update_profile';
-$route['TeamProfile']='App/Team/profile';
-$route['ProfileTeam/:num']='App/Team/profile_team';
-$route['AddTeam/:num']='App/Team/add_team';
-$route['CreateProject']='App/Project/Project_create';
-$route['NewProject']='App/Project/save_new_project';
-$route['ManageMyProject']='App/Project/manage_project';
-$route['AddTeamProject/:num/:num']='App/Project/add_team';
-$route['404_override'] = '';
-$route['translate_uri_dashes'] = FALSE;
+
+// ----- Print Document
+$route['Print/:any']='App/Project/print';
+
+
+
+
+
+
+
+

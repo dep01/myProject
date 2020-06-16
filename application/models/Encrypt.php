@@ -14,5 +14,14 @@
 
         return $encrypt_data;
     }
+    public function Decrypt_data($data){
+        $ciphering = "AES-128-CTR"; 
+        $iv_length = openssl_cipher_iv_length($ciphering); 
+        $options = 0; 
+        $encryption_iv = '1312111098765432';
+        $encryption_key = "dep01";
+        $encrypt_data = openssl_decrypt($data, $ciphering,$encryption_key, $options, $encryption_iv);
+        return $encrypt_data;
+    }
  }
 ?>

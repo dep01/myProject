@@ -30,7 +30,7 @@
     </style>
   <!-- Custom fonts for this template-->
   <link href="<?php echo base_url();?>assets/vendor/fontawesome-free/css/all.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+  <!-- <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet"> -->
 
   <!-- <link href='https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/dropzone.css' type='text/css' rel='stylesheet'> -->
   <!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/dropzone.js' type='text/javascript'></script> -->
@@ -106,7 +106,7 @@
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="<?php echo base_url();?>index.php/Login">Logout</a>
+          <a class="btn btn-dark" href="<?php echo base_url();?>index.php/Login">Logout</a>
         </div>
       </div>
     </div>
@@ -157,7 +157,6 @@
             $('[data-toggle="tooltip"]').tooltip()
             });
   </script>
-
   <script>
       // Add restrictions
       Dropzone.options.fileupload = {
@@ -170,6 +169,7 @@
 		document.getElementById("buttonklick").click()
 	</script>
 	<?php } ?>
+  
 </body>
 
 </html>

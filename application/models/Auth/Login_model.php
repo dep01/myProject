@@ -56,17 +56,17 @@ class Login_model extends CI_Model {
         $this->db->select('count(distinct(a.id_project))as data');
         $this->db->from('project a');
         $this->db->join('project_team b','a.id_project = b.id_project');
-        $this->db->where("b.id_user = $id_user");
+        $this->db->where("b.id_user = $id_user and b.id_project_team_status =2");
         $data1 = $this->db->get()->result_array();
         $this->db->select('count(distinct(a.id_project))as data');
         $this->db->from('project a');
         $this->db->join('project_team b','a.id_project = b.id_project');
-        $this->db->where("b.id_user = $id_user and a.id_project_status = 4");
+        $this->db->where("b.id_user = $id_user and a.id_project_status = 3 and b.id_project_team_status =2");
         $data2 = $this->db->get()->result_array();
         $this->db->select('count(distinct(a.id_project))as data');
         $this->db->from('project a');
         $this->db->join('project_team b','a.id_project = b.id_project');
-        $this->db->where("b.id_user = $id_user and a.id_project_status <> 4");
+        $this->db->where("b.id_user = $id_user and a.id_project_status <> 3 and b.id_project_team_status =2");
         $data3 = $this->db->get()->result_array();
         $return = array(
             'project_total'     => $data1[0]['data'],

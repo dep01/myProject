@@ -22,6 +22,9 @@ public function __construct(){
         $cek['content'] ='App/Team/My_team';
         $cek['title']   ='MyTeam';
         $cek['listteam']= $list;
+        $cek['following']= $profile['following'] ;
+        $cek['newproject']   = $profile['newproject'] ;
+        $cek['total_notify'] = $profile['total_notify'] ;
         $this->load->view('App/Home/Home',$cek);
     }
     public function search_team(){
@@ -70,6 +73,9 @@ public function __construct(){
             redirect('index.php/Team','refresh');
         };
         $cek['list']    = $profile[0];
+        $cek['following']= $profile['following'] ;
+        $cek['newproject']   = $profile['newproject'] ;
+        $cek['total_notify'] = $profile['total_notify'] ;
         $this->load->view('App/Home/Home',$cek);
     }
     public function profile(){
@@ -127,6 +133,9 @@ public function __construct(){
 
         };
         $cek['list']    = $profile[0];
+        $cek['following']= $profile['following'] ;
+        $cek['newproject']   = $profile['newproject'] ;
+        $cek['total_notify'] = $profile['total_notify'] ;
         $this->load->view('App/Home/Home',$cek);
     }
     public function add_team(){
@@ -160,6 +169,31 @@ public function __construct(){
             $this->Team->follow_team($forme,$forteam,$update);
         }
         redirect('index.php/Team','refresh');  
+    }
+    public function decline_team(){
+        $mydata     = $this->session->userdata();
+        $id_friend  = $this->uri->segment('2');
+        $model      = $this->Team->check_team($mydata['id_user'],$id_friend);
+        $this->db->delete('list_friend',array('id_user'=>$mydata['id_user'],'id_user_friend'=>$id_friend));
+        $this->db->delete('list_friend',array('id_user'=>$id_friend,'id_user_friend'=>$mydata['id_user']));
+        redirect('index.php/Team','refresh');  
+    }
+    public function search_team_project(){
+        $mydata = $this->session->userdata();
+        $id_project =$this->uri->segment('4');
+        $id_user    = $mydata['id_user'];
+        $teamlist       = $this->Team->add_team_project($id_user,$id_project);
+        $profile        = $this->Profile->get_my_profile($id_user);
+        $list           = $this->Project->manage_project($mydata['id_user']);
+        $cek['list']    = $profile[0];
+        $cek['content'] ='App/Project/inc/Manage_project';
+        $cek['title']   ='MyProject';
+        $cek['projectlist']= $list;
+        $cek['teamlist']   = $teamlist;
+        $cek['following']  = $profile['following'] ;
+        $cek['newproject']   = $profile['newproject'] ;
+        $cek['total_notify'] = $profile['total_notify'] ;
+        $this->load->view('App/Home/Home',$cek);
     }
 
 }

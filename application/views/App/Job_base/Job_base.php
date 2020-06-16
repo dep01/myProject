@@ -24,12 +24,12 @@
                   </tfoot>
                   <tbody>
                   <?php foreach($joblist as $list): ?>
-
+                    <?php include('inc/Update_modal.php')?>
                     <tr>
                       <td><?php echo $list['jobbase']; ?></td>
                       <td><?php echo $list['percentageFee']; ?></td>
                       <td>
-                         <a class="btn btn-dark text-white btn-sm" href="<?php echo base_url();?>index.php/Updatejob/<?php echo $list['id_jobbase']; ?>" style="text-decoration: none;">Update</a> 
+                         <a class="btn btn-dark text-white btn-sm" data-toggle="modal" data-target="#UpdateModal<?php echo $list['id_jobbase']?>" style="text-decoration: none;">Update</a> 
                          <a data-toggle="modal" data-target="#DeleteModal<?php echo $list['id_jobbase']?>" class="btn btn-secondary text-white btn-sm " style="text-decoration: none;">Delete</a>
                       </td> 
                     </tr>

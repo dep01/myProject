@@ -15,6 +15,21 @@ class Team_model extends CI_Model {
 
         return $result;
     }
+    public function add_team_project($id_user,$id_project){
+        $this->db->distinct();
+        $this->db->select('a.id_user_friend,d.username,b.fullname,c.list_friend_status,a.id_user_friend,a.id_list_friend_status,b.image');
+        $this->db->from('list_friend a ');
+        $this->db->join('profile_table b','a.id_user_friend = b.id_user ');
+        $this->db->join('list_friend_status c','a.id_list_friend_status = c.id_list_friend_status');
+        $this->db->join('user_table d','a.id_user_friend = d.id_user');
+        $this->db->join('project_team e','a.id_user_friend = e.id_user','left');
+        $this->db->where("a.id_user = $id_user and a.id_list_friend_status = 3 and a.id_user_friend not in(select id_user from project_team where id_project = $id_project)");
+        $this->db->order_by('b.fullname', 'ASC');
+        $query  = $this->db->get();
+        $result = $query->result_array();
+
+        return $result;
+    }
     public function search_team($username,$id_user){
         $sql    = 'Select b.username, concat(a.fullname,"( ",b.username," )") as userdata from profile_table a
         inner join user_table b on a.id_user = b.id_user where a.id_active_status = 1 and a.id_user <> '.$id_user.' and (a.fullname like "%'.$username.'%" or b.username like "%'.$username.'%") limit 10';

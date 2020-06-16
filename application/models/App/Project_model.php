@@ -21,7 +21,7 @@ class Project_model extends CI_Model {
         $this->db->join("profile_table c","a.id_user = c.id_user");
         $this->db->join("project_team d","a.id_project = d.id_project");
         $this->db->join("project_team_status e","d.id_project_team_status = e.id_project_team_status");
-        $this->db->where("d.id_user = $id_user and e.id_project_team_status=3");
+        $this->db->where("d.id_user = $id_user and e.id_project_team_status=2");
         $data = $this->db->get()->result_array(); 
         return $data;
     }
@@ -30,9 +30,19 @@ class Project_model extends CI_Model {
         $data   = array(
             "id_user"                   => $model[0]["id_user"],
             "id_project"                => $model[0]["id_project"],
-            "id_project_team_status"    => 3,
+            "id_project_team_status"    => 2,
 
         );
+        $this->db->insert('project_team',$data);
+    }
+    public function is_myproject($id){
+        $data = $this->db->get_where('project',$id)->result_array();
+        return $data;
+    }
+    public function count_team($id){
+        return $this->db->query('select count(*) as total from project_team where  id_project_team_status=2 and id_project ='.$id)->result_array();
+    }
+    public function add_team($data){
         $this->db->insert('project_team',$data);
     }
 }

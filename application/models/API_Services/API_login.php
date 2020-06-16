@@ -22,13 +22,13 @@ class API_login extends CI_Model {
             if ($result){
                 $return     =array(
                     "msg"   =>"User found",
-                    "status"=>true,
+                    "status"=>200,
                     "data"  =>$result
                 );
             }else{
                 $return     =array(
                     "msg"   =>"Complete your profile",
-                    "status"=>true,
+                    "status"=>200,
                     "data"  =>$result
                 );
             }

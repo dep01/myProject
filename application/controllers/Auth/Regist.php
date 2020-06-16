@@ -82,8 +82,12 @@ class Regist extends CI_Controller {
                 $this->session->set_flashdata('image',$new_name);
             }else{
                 $mydata     = $this->session->userdata();
-                if($mydata['image']){
-                    unlink('assets/images/user/'.$mydata['image']);
+                $id_user    = array(
+                    'a.id_user'=>$mydata['id_user']
+                );
+                $old_image  = $this->Profile->get_my_profile($id_user);
+                if($old_image['image']){
+                    unlink('assets/images/user/'.$old_image['image']);
                 }
                 $id_user    = array(
                             'id_user'=>$mydata['id_user']
@@ -92,9 +96,6 @@ class Regist extends CI_Controller {
                             'image'  => $new_name
                         );
                 $model      = $this->Regist->update_picture($id_user,$image);
-                $id_user    = array('profile_table.id_user'=> $mydata['id_user']);
-                $model      = $this->Profile->get_my_profile($id_user);
-                $this->session->set_userdata($model[0]);
             }
 
           }
