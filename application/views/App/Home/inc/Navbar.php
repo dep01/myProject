@@ -60,7 +60,7 @@
                     </div>
                   </div>
                   <div class="d-flex flex-column w-100">
-                      <div class="small text-gray-500"><?php echo $followlist['created'];?></div>
+                      <div class="small text-gray-500"><?php $date = date_create($followlist['created']); echo date_format($date, 'j F Y') ;?></div>
                         <span class="font-weight-bold"><?php echo $followlist['fullname'];?></span>
                         <span class="">Want be your teams</span>
                       <div class="d-flex flex-row-reverse">
@@ -78,7 +78,7 @@
                     </div>
                   </div>
                   <div class="d-flex flex-column w-100">
-                      <div class="small text-gray-500"><?php echo $newprojectlist['created'];?></div>
+                      <div class="small text-gray-500"><?php $date = date_create($newprojectlist['created']);echo date_format($date, 'j F Y') ;?></div>
                         <span class="font-weight-bold"><?php echo $newprojectlist['fullname'];?></span>
                         <span class="font-weight-bold">Want you join <?php echo $newprojectlist['project_name'];?> </span>
                       <div class="d-flex flex-row-reverse">

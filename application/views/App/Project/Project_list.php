@@ -80,7 +80,7 @@
                     <?php foreach($projectlist as $list): ?>
                         <tr>
                             <td>
-                            <?php include('inc/Project_card.php'); ?>
+                            <?php include('inc/Manage_project_card.php'); ?>
                             </td>
                         </tr>
                     <?php endforeach;?>

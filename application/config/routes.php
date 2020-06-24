@@ -74,11 +74,18 @@ $route['CreateProject']='App/Project/Project_create';
 $route['NewProject']='App/Project/save_new_project';
 $route['ManageMyProject']='App/Project/manage_project';
 $route['AddTeamProject']='App/Project/add_team';
-$route['AddJobProject/:any']='App/Project/add_job';
+$route['AddJobProject/:any/:any']='App/Project/add_job';
 $route['UpdateStatus/:any/:any']='App/Project/update_project_status';
 $route['Settings/:any']='App/Project/project_settings';
+$route['Mytask/:any']='App/Project/project_task';
 $route['AcceptProject/:any']='App/Home/accept_project';
 $route['DeclineProject/:any']='App/Home/decline_project';
+$route['AddJobbase/:any/:any/:any/:any']='App/Project/add_jobbase';
+$route['SaveAddJobProject']='App/Project/save_job_project';
+$route['DeleteJobDetail/:any/:any/:any']='App/Project/delete_job';
+$route['ClearJob/:any/:any']='App/Project/clear_job';
+
+
 
 // -----Route Job
 $route['Job']='App/Job_base/index';
@@ -94,7 +101,7 @@ $route['MyProfile']='App/Home/edit_profile';
 $route['UpdateProfile']='App/Home/update_profile';
 
 // ----- Print Document
-$route['Print/:any']='App/Project/print';
+$route['Print/:any']='App/Project/print_all_task';
 
 
 
