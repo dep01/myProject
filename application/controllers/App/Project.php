@@ -110,6 +110,7 @@ public function __construct(){
                     'a.id_user'               =>$id_friend,
                  );
                 $list               =$this->Project->get_job_detail($condition);
+                // print_r($list);die;
                 $cek['projectlist'] = $data[0];
                 $cek['list']        = $profile[0];
                 $cek['content']     ='App/Project/inc/Add_job';
@@ -200,6 +201,7 @@ public function __construct(){
             $cek['joblist']     = $list;
             $print = $this->load->view('Print_task', $cek, TRUE);
             $mpdf = new \Mpdf\Mpdf();
+            // print_r($cek);die;
             $mpdf->WriteHTML($print);
             $mpdf->Output($data[0]['project_name'].'.pdf','I');
         }else{
